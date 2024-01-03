@@ -396,3 +396,12 @@ FodyWeavers.xsd
 
 # JetBrains Rider
 *.sln.iml
+/.vs/TicketMate.Api/FileContentIndex/43ec5ef1-86dc-469d-8255-24502ffe96e8.vsidx
+/.vs/TicketMate.Api/v17/.suo
+/TicketMate.Api/obj/Debug/net7.0/TicketMate.Api.csproj.AssemblyReference.cache
+/TicketMate.Api/obj/Debug/net7.0/TicketMate.Api.assets.cache
+/TicketMate.Api/obj/Debug/net7.0/TicketMate.Api.GeneratedMSBuildEditorConfig.editorconfig
+/TicketMate.Api/obj/project.assets.json
+/TicketMate.Api/obj/TicketMate.Api.csproj.nuget.dgspec.json
+/TicketMate.Api/obj/project.nuget.cache
+/TicketMate.Api/obj/TicketMate.Api.csproj.nuget.g.props
