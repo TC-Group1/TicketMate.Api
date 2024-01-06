@@ -405,3 +405,4 @@ FodyWeavers.xsd
 /TicketMate.Api/obj/TicketMate.Api.csproj.nuget.dgspec.json
 /TicketMate.Api/obj/project.nuget.cache
 /TicketMate.Api/obj/TicketMate.Api.csproj.nuget.g.props
+/TicketMate.Persistence.Tests/Hidden.cs
