@@ -1,8 +1,4 @@
-﻿using TicketMate.Persistence.Abstraction;
-using Dapper;
-using System.Runtime.CompilerServices;
-
-[assembly: InternalsVisibleTo("TicketMate.Persistence.Tests")]
+﻿using Dapper;
 
 namespace TicketMate.Persistence.Implementation
 {

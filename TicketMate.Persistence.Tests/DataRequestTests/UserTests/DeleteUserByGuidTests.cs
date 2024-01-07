@@ -11,7 +11,7 @@ namespace TicketMate.Persistence.Tests.DataRequestTests.UserTests
         }
 
         [Fact]
-        public async Task DeleteUserByGuid_Given_UserIsDeleted_ShouldReturn_OneRowAffected()
+        public async Task DeleteUserByGuid_Given_UserNotDeleted_ShouldReturn_OneRowAffected()
         {
             var guid = Guid.NewGuid();
 
