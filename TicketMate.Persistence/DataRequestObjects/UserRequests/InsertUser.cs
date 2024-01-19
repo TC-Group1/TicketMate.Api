@@ -8,7 +8,6 @@
             Username = userName;
             PasswordHash = passwordHash;
         }
-
         public Guid Guid { get; set; }
 
         public string Username { get; set; }

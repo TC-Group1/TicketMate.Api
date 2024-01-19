@@ -15,6 +15,5 @@ namespace TicketMate.Persistence.DataRequestObjects.RolesRequests
         public object? GetParameters() => this;
 
         public string GetSql() => $"SELECT * FROM {DatabaseTable.Roles} WHERE NAME LIKE @name";
-        
     }
 }
