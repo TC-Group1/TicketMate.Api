@@ -13,7 +13,5 @@ namespace TicketMate.Persistence.DataRequestObjects.UserRolesRequests
         public override string GetSql() => $"INSERT INTO {DatabaseTable.UserRoles} (ROLEID, USERID) VALUES (@roleId, @userId)";
 
         public object? GetParameters() => this;
-
-       
     }
 }

@@ -9,8 +9,6 @@ namespace TicketMate.Persistence.DataRequestObjects.BaseRequests
 {
     public abstract class IdDataRequest : IDataRequest
     {
-        //public int Id { get; set; }
-
         public int UserId { get; set; }
 
         public int RoleId { get; set; }
@@ -19,16 +17,9 @@ namespace TicketMate.Persistence.DataRequestObjects.BaseRequests
         { 
             UserId = userId;
             RoleId = roleId;
-            //Id = id;
         }
-
-
         public abstract string GetSql();
-        
-
-        public object? GetParameters() => this;
-
-        
        
+        public object? GetParameters() => this;
     }
 }

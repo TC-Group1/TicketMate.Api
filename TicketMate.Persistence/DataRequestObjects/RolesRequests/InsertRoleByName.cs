@@ -13,8 +13,9 @@ namespace TicketMate.Persistence.DataRequestObjects.RolesRequests
             Name = name;
         }
         public string Name { get; set; }
+
         public object? GetParameters() => this;
+
         public string GetSql() => $"INSERT INTO {DatabaseTable.Roles} (Name) VALUES (@Name)";
-       
     }
 }

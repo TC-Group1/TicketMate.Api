@@ -1,4 +1,5 @@
 using Microsoft.AspNetCore.Mvc;
+using System.Data.Common;
 
 namespace TicketMate.Api.Controllers
 {
@@ -13,6 +14,7 @@ namespace TicketMate.Api.Controllers
 
         private readonly ILogger<WeatherForecastController> _logger;
 
+        //private DbConnection _connection = new MySQLConnectionFactory("localhost")
         public WeatherForecastController(ILogger<WeatherForecastController> logger)
         {
             _logger = logger;

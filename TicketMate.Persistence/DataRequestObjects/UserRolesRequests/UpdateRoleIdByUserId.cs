@@ -6,7 +6,12 @@ using System.Threading.Tasks;
 
 namespace TicketMate.Persistence.DataRequestObjects.UserRolesRequests
 {
-    internal class UpdateRoleIdByUserId
+    public class UpdateRoleIdByUserId : IdDataRequest, IDataExecute
     {
+        public UpdateRoleIdByUserId(int userId, int roleId) : base(userId, roleId) { }
+
+        public override string GetSql() => $"UPDATE {DatabaseTable.UserRoles} SET ROLEID = @roleId WHERE USERID = @userId";
+
+        public object? GetParameters() => this;
     }
 }
