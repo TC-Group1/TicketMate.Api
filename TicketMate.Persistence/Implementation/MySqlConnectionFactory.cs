@@ -13,10 +13,10 @@ namespace TicketMate.Persistence.Implementation
         { 
             var builder = new MySqlConnectionStringBuilder()
             {
-                Server = server,
-                Database = databaseName,
-                UserID = userId,
-                Password = password,
+                Server = server, // http://localhost:3309 from docker
+                Database = databaseName, // Ticketmate
+                UserID = userId, //ticketmate_dev_user
+                Password = password, // ticketmate_dev_pw
             };
 
             _connectionString = builder.ConnectionString;

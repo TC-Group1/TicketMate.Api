@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Org.BouncyCastle.Bcpg;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,17 +9,17 @@ namespace TicketMate.Persistence.DataRequestObjects.BaseRequests
 {
     public abstract class IdDataRequest : IDataRequest
     {
-        public int Id { get; set; }
+        public int UserId { get; set; }
 
-        public IdDataRequest(int id) => Id = id;
+        public int RoleId { get; set; }
 
-
+        public IdDataRequest(int userId, int roleId) 
+        { 
+            UserId = userId;
+            RoleId = roleId;
+        }
         public abstract string GetSql();
-        
-
-        public object? GetParameters() => new { Id };
-
-        
        
+        public object? GetParameters() => this;
     }
 }

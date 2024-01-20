@@ -16,8 +16,4 @@
     <ProjectReference Include="..\TicketMate.Domain\TicketMate.Domain.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="DataRequestObjects\UserRolesRequests\" />
-  </ItemGroup>
-
 </Project>
