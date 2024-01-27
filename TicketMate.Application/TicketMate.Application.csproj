@@ -14,4 +14,8 @@
     <ProjectReference Include="..\TicketMate.Persistence\TicketMate.Persistence.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="BaseObjects\BaseHandlers\" />
+  </ItemGroup>
+
 </Project>

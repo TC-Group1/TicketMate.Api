@@ -8,6 +8,6 @@
 
         public object? GetParameters() => this;
 
-        public string GetSql() => $"SELECT * FROM {DatabaseTable.UserRoles} WHERE USERID = @userId";
+        public string GetSql() => $"SELECT * FROM {DatabaseTable.UserRoles} WHERE UserId = @userId";
     }
 }

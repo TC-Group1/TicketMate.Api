@@ -1,6 +1,6 @@
 ﻿namespace TicketMate.Persistence.DataRequestObjects.UserRolesRequests
 {
-    public class UpdateRoleIdByUserId : IdDataRequest, IDataExecute
+    public class UpdateRoleIdByUserId : UserIdRoleIdRequest, IDataExecute
     {
         public UpdateRoleIdByUserId(int userId, int roleId) : base(userId, roleId) { }
 
