@@ -12,7 +12,8 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Controllers\" />
+    <ProjectReference Include="..\TicketMate.Application\TicketMate.Application.csproj" />
+    <ProjectReference Include="..\TicketMate.Persistence\TicketMate.Persistence.csproj" />
   </ItemGroup>
 
 </Project>

@@ -1,11 +1,20 @@
+using TicketMate.Api.Middleware;
+using TicketMate.Application.Implementation;
+using TicketMate.Persistence.Implementation;
+
 var builder = WebApplication.CreateBuilder(args);
 
-// Add services to the container.
-
 builder.Services.AddControllers();
-// Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
+
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
+
+// Inject Dependencies
+builder.Services.InjectPersistenceDependencies(builder.Configuration.GetConnectionString("Default"));
+builder.Services.InjectApplicationDependencies();
+
+// Inject Middleware
+builder.Services.AddTransient<ExceptionHandlingMiddleware>();
 
 var app = builder.Build();
 
@@ -21,5 +30,8 @@ app.UseHttpsRedirection();
 app.UseAuthorization();
 
 app.MapControllers();
+
+// Use Middleware
+app.UseMiddleware<ExceptionHandlingMiddleware>();
 
 app.Run();
