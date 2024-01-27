@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace TicketMate.Persistence.DataRequestObjects.BaseRequests
+namespace TicketMate.Persistence.BaseDataRequests
 {
     public abstract class NameDataRequest : IDataRequest
     {

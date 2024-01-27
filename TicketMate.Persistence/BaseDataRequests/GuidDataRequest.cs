@@ -1,4 +1,4 @@
-﻿namespace TicketMate.Persistence.DataRequestObjects.BaseRequests
+﻿namespace TicketMate.Persistence.BaseDataRequests
 {
     /// <summary>
     /// This base request can be reused by any IDataRequest which will GetParameters() => { Guid };

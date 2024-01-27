@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace TicketMate.Persistence.DataRequestObjects.BaseRequests
+namespace TicketMate.Persistence.BaseDataRequests
 {
     public abstract class IdDataRequest : IDataRequest
     {
@@ -13,13 +13,13 @@ namespace TicketMate.Persistence.DataRequestObjects.BaseRequests
 
         public int RoleId { get; set; }
 
-        public IdDataRequest(int userId, int roleId) 
-        { 
+        public IdDataRequest(int userId, int roleId)
+        {
             UserId = userId;
             RoleId = roleId;
         }
         public abstract string GetSql();
-       
+
         public object? GetParameters() => this;
     }
 }

@@ -13,6 +13,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{E1BD0B32
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TicketMate.Persistence.Tests", "TicketMate.Persistence.Tests\TicketMate.Persistence.Tests.csproj", "{ADFEC1EE-F953-4E61-AC32-D5722C435C6D}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TicketMate.Application", "TicketMate.Application\TicketMate.Application.csproj", "{5B1E5AC7-CFBF-4974-B00F-851D27462C34}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -35,6 +37,10 @@ Global
 		{ADFEC1EE-F953-4E61-AC32-D5722C435C6D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{ADFEC1EE-F953-4E61-AC32-D5722C435C6D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{ADFEC1EE-F953-4E61-AC32-D5722C435C6D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5B1E5AC7-CFBF-4974-B00F-851D27462C34}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5B1E5AC7-CFBF-4974-B00F-851D27462C34}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5B1E5AC7-CFBF-4974-B00F-851D27462C34}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5B1E5AC7-CFBF-4974-B00F-851D27462C34}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
