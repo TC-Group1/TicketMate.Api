@@ -35,7 +35,7 @@ namespace TicketMate.Application.Requests.UserRequests.Insert
                         throw new AlreadyExistsException(nameof(User), (request.Guid, nameof(request.Guid)));
                     }
 
-                    if (ex.Message.EndsWith("'users.Username'"))
+                    if (ex.Message.EndsWith("'users.unique_username'"))
                     {
                         throw new AlreadyExistsException(nameof(User), (request.Username, nameof(request.Username)));
                     }
