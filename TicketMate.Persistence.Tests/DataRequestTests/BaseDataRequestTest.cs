@@ -16,14 +16,16 @@ namespace TicketMate.Persistence.Tests.DataRequestTests
                 Example:    
                             internal class Hidden
                             {
-                                internal const string DbServer = "";
-                                internal const string DbName = "";
-                                internal const string DbUserId = "";
-                                internal const string DbPassword = "";
+                                internal const string DbServer = "localhost";
+                                internal const string DbName = "TicketMate";
+                                internal const string DbUserId = "REPLACE THIS WITH DB USERNAME";
+                                internal const string DbPassword = "REPLACE THIS WITH DB PASSWORD";
+                                // Our Docker DB is exposed on port 3309
+                                internal const string DbPort = "3309"; 
                             }
             */
 
-            _dataAccess = new DataAccess(new MySqlConnectionFactory(Hidden.DbServer, Hidden.DbName, Hidden.DbUserId, Hidden.DbPassword));
+            _dataAccess = new DataAccess(new MySqlConnectionFactory(Hidden.DbServer, Hidden.DbPort, Hidden.DbName, Hidden.DbUserId, Hidden.DbPassword));
         }
     }
 }
