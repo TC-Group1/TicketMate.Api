@@ -8,7 +8,7 @@ namespace TicketMate.Persistence.Tests
         [Fact]
         public void MySqlConnectionFactory_Given_ConnectionDetails_Should_ReturnConnection_ThatCanOpen()
         {
-            var connectionFactory = new MySqlConnectionFactory(Hidden.DbServer, Hidden.DbName, Hidden.DbUserId, Hidden.DbPassword);
+            var connectionFactory = new MySqlConnectionFactory(Hidden.DbServer, Hidden.DbPort, Hidden.DbName, Hidden.DbUserId, Hidden.DbPassword);
 
             using var connection = connectionFactory.NewConnection();
 
@@ -20,7 +20,7 @@ namespace TicketMate.Persistence.Tests
         [Fact]
         public void MySqlConnectionFactory_Given_ConnectionString_Should_ReturnConnection_ThatCanOpen()
         {
-            var connectionString = $"server={Hidden.DbServer};uid={Hidden.DbUserId};pwd={Hidden.DbPassword};database={Hidden.DbName}";
+            var connectionString = $"server={Hidden.DbServer};Port={Hidden.DbPort};uid={Hidden.DbUserId};pwd={Hidden.DbPassword};database={Hidden.DbName}";
 
             var connectionFactory = new MySqlConnectionFactory(connectionString);
 
