@@ -32,7 +32,9 @@ namespace TicketMate.Persistence.Tests.DataRequestTests.UserTests
             var request = new InsertUser(guid, $"Username-{Guid.NewGuid()}", "PwHash");
 
             // assert that request throws MySqlException
-            await Assert.ThrowsAsync<MySqlException>(async () => await _dataAccess.ExecuteAsync(request));
+            var exception = await Record.ExceptionAsync(async () => await _dataAccess.ExecuteAsync(request));
+
+            Assert.IsType<MySqlException>(exception);
 
             await _dataAccess.ExecuteAsync(new DeleteUserByGuid(request.Guid));
         }
