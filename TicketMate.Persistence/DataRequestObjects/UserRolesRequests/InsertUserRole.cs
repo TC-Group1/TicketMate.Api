@@ -1,4 +1,6 @@
-﻿namespace TicketMate.Persistence.DataRequestObjects.UserRolesRequests
+﻿using TicketMate.Persistence.BaseDataRequests;
+
+namespace TicketMate.Persistence.DataRequestObjects.UserRolesRequests
 {
     public class InsertUserRole : UserIdRoleIdRequest, IDataExecute
     {
