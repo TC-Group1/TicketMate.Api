@@ -4,6 +4,6 @@
     {
         public const int Username = 50;
 
-        public const int PasswordHash = 100;
+        public const int PasswordHash = 256;
     }
 }
