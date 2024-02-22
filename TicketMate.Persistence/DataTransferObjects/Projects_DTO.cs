@@ -6,7 +6,14 @@ using System.Threading.Tasks;
 
 namespace TicketMate.Persistence.DataTransferObjects
 {
-    internal class Projects_DTO
+    public class Projects_DTO
     {
+        public int Id { get; set; }
+
+        public Guid Guid { get; set; }
+
+        public string Name { get; set; }
+
+        public bool IsActive { get; set; }
     }
 }
