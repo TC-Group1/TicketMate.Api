@@ -32,6 +32,6 @@
         public object? GetParameters() => this;
 
         public string GetSql() => $"INSERT INTO {DatabaseTable.Users} (Guid, FirstName, LastName, PhoneNumber, Email, Avatar, IsActive, PasswordHash) " +
-            $"                      VALUES (@Guid, @FirstName, @LastName, @PhoneNumber, @Email, @Avatar, @IsActive, @PasswordHash)";
+                                  $"VALUES (@Guid, @FirstName, @LastName, @PhoneNumber, @Email, @Avatar, @IsActive, @PasswordHash)";
     }
 }
