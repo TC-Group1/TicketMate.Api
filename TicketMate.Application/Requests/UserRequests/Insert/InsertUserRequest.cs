@@ -6,6 +6,8 @@ namespace TicketMate.Application.Requests.UserRequests.Insert
 {
     public class InsertUserRequest : IValidatable, IRequest
     {
+        #region Constructors
+
         public InsertUserRequest(Guid guid, string username, string passwordHash)
         {
             Guid = guid;
@@ -17,11 +19,20 @@ namespace TicketMate.Application.Requests.UserRequests.Insert
         {
 
         }
+
+        #endregion
+
+        #region Public Properties
+
         public Guid Guid { get; set; }
 
         public string Username { get; set; } = null!;
 
         public string PasswordHash { get; set; } = null!;
+
+        #endregion
+
+        #region IValidatable Validation
 
         public bool IsValid(out Validator validator)
         {
@@ -33,5 +44,7 @@ namespace TicketMate.Application.Requests.UserRequests.Insert
 
             return validator.IsPassingAllRules;
         }
+
+        #endregion
     }
 }
