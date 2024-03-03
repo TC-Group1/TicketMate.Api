@@ -63,7 +63,5 @@ namespace TicketMate.Application.Tests.RequestTests.ProjectRequestTests.InsertPr
 
             Assert.IsType<OperationFailedException>(exception);
         }
-
-
     }
 }
