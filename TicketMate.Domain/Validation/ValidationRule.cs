@@ -1,6 +1,6 @@
 ﻿namespace TicketMate.Domain.Validation
 {
-    public abstract class ValidationRule<TypeToValidate> : IValidationRule<TypeToValidate>
+    public abstract class ValidationRule<TypeToValidate> : IValidationRule
     {
         public ValidationRule(TypeToValidate objectToValidate, string nameOfObjectToValidate)
         {
