@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using TicketMate.Domain.Constants;
+﻿using TicketMate.Domain.Constants;
 using TicketMate.Domain.Validation.GuidValidation;
 using TicketMate.Domain.Validation.StringValidation;
 
@@ -20,7 +15,7 @@ namespace TicketMate.Application.Requests.UserRequests.Insert
 
         public InsertUserRequest()
         {
-            
+
         }
         public Guid Guid { get; set; }
 
@@ -30,16 +25,13 @@ namespace TicketMate.Application.Requests.UserRequests.Insert
 
         public bool IsValid(out Validator validator)
         {
-            validator = new();
-
-            validator.ApplyRule(new GuidRequiredRule(Guid, nameof(Guid)));
-
-            validator.ApplyRule(new StringLengthLimitRule(Username, nameof(Username), MaxLength.Username));
-
-            validator.ApplyRule(new StringLengthLimitRule(PasswordHash, nameof(PasswordHash), MaxLength.PasswordHash));
+            validator = new(
+                new GuidRequiredRule(Guid, nameof(Guid)),
+                new StringLengthLimitRule(Username, nameof(Username), MaxLength.Username),
+                new StringLengthLimitRule(PasswordHash, nameof(PasswordHash), MaxLength.PasswordHash)
+                );
 
             return validator.IsPassingAllRules;
-
         }
     }
 }
