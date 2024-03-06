@@ -16,7 +16,14 @@ namespace TicketMate.Persistence.Tests.DataRequestTests.UserTests
             var guid = Guid.NewGuid();
 
             // insert user to delete
-            await _dataAccess.ExecuteAsync(new InsertUser(guid, $"Username-{guid}", "pwHash"));
+            await _dataAccess.ExecuteAsync(new InsertUser(
+                                        guid, $"FirstName-{guid}",
+                                        $"LastName-{guid}",
+                                        $"PhoneNumber-{guid}",
+                                        $"Email-{guid}",
+                                        $"Avatar-{guid}",
+                                        1,
+                                        $"PWHash-{guid}"));
 
             // get user by guid to ensure it was inserted
             var userBeforeDeleting = await _dataAccess.FetchAsync(new GetUserByGuid(guid));

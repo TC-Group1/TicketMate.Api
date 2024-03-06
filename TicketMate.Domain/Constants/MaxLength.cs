@@ -2,7 +2,7 @@
 {
     public class MaxLength
     {
-        public const int FistName = 40;
+        public const int FirstName = 40;
 
         public const int LastName = 40;
 
