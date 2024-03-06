@@ -18,7 +18,15 @@ namespace TicketMate.Application.Requests.UserRequests.Insert
         {
             try
             {
-                var rowsAffected = await _dataAccess.ExecuteAsync(new InsertUser(request.Guid, request.Username, request.PasswordHash));
+                var rowsAffected = await _dataAccess.ExecuteAsync(new InsertUser(
+                                                                 request.Guid, 
+                                                                 request.FirstName, 
+                                                                 request.LastName, 
+                                                                 request.PhoneNumber, 
+                                                                 request.Email, 
+                                                                 request.Avatar, 
+                                                                 request.IsActive, 
+                                                                 request.PasswordHash));
 
                 if (rowsAffected <= 0)
                 {
@@ -37,7 +45,9 @@ namespace TicketMate.Application.Requests.UserRequests.Insert
 
                     if (ex.Message.EndsWith("'users.unique_username'"))
                     {
-                        throw new AlreadyExistsException(nameof(User), (request.Username, nameof(request.Username)));
+                        var nameTuple = (request.FirstName, request.LastName);
+
+                        throw new AlreadyExistsException(nameof(User), nameTuple);
                     }
                 }
 
