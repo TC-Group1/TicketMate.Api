@@ -1,4 +1,5 @@
 ﻿using TicketMate.Persistence.DataRequestObjects.UserRequests;
+using TicketMate.Persistence.Tests.DataRequestTests.Helpers;
 
 namespace TicketMate.Persistence.Tests.DataRequestTests.UserTests
 {
@@ -16,13 +17,13 @@ namespace TicketMate.Persistence.Tests.DataRequestTests.UserTests
             var guid = Guid.NewGuid();
 
             var insertUserRequest = new InsertUser(
-                                        guid, $"FirstName-{guid}",
-                                        $"LastName-{guid}",
-                                        $"PhoneNumber-{guid}",
-                                        $"Email-{guid}",
-                                        $"Avatar-{guid}",
+                                        guid, TestString.Random(),
+                                        TestString.Random(),
+                                        TestString.Random(15),
+                                        TestString.Random(),
+                                        TestString.Random(),
                                         1,
-                                        $"PWHash-{guid}");
+                                        TestString.Random());
 
             await _dataAccess.ExecuteAsync(insertUserRequest);
         

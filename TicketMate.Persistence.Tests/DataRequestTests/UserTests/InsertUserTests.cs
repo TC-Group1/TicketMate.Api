@@ -1,5 +1,6 @@
 ﻿using MySql.Data.MySqlClient;
 using TicketMate.Persistence.DataRequestObjects.UserRequests;
+using TicketMate.Persistence.Tests.DataRequestTests.Helpers;
 
 namespace TicketMate.Persistence.Tests.DataRequestTests.UserTests
 {
@@ -11,13 +12,13 @@ namespace TicketMate.Persistence.Tests.DataRequestTests.UserTests
             var guid = Guid.NewGuid();
 
             var request = new InsertUser(
-                                        guid, $"FirstName-{guid}",
-                                        $"LastName-{guid}",
-                                        $"PhoneNumber-{guid}",
-                                        $"Email-{guid}",
-                                        $"Avatar-{guid}",
+                                        guid, TestString.Random(),
+                                        TestString.Random(),
+                                        TestString.Random(15),
+                                        TestString.Random(),
+                                        TestString.Random(),
                                         1,
-                                        $"PWHash-{guid}");
+                                        TestString.Random());
 
             var rowsAffected = await _dataAccess.ExecuteAsync(request);
 
@@ -34,23 +35,23 @@ namespace TicketMate.Persistence.Tests.DataRequestTests.UserTests
 
             // insert user with Guid so it is already taken
             await _dataAccess.ExecuteAsync(new InsertUser(
-                                        guid, $"FirstName-{guid}",
-                                        $"LastName-{guid}",
-                                        $"PhoneNumber-{guid}",
-                                        $"Email-{guid}",
-                                        $"Avatar-{guid}",
+                                        guid, TestString.Random(),
+                                        TestString.Random(),
+                                        TestString.Random(15),
+                                        TestString.Random(),
+                                        TestString.Random(),
                                         1,
-                                        $"PWHash-{guid}"));
+                                        TestString.Random()));
 
             // Create request with guid that was just inserted
             var request = new InsertUser(
-                                        guid, $"FirstName-{guid}",
-                                        $"LastName-{guid}",
-                                        $"PhoneNumber-{guid}",
-                                        $"Email-{guid}",
-                                        $"Avatar-{guid}",
+                                        guid, TestString.Random(),
+                                        TestString.Random(),
+                                        TestString.Random(15),
+                                        TestString.Random(),
+                                        TestString.Random(),
                                         1,
-                                        $"PWHash-{guid}");
+                                        TestString.Random());
 
             // assert that request throws MySqlException
             var exception = await Record.ExceptionAsync(async () => await _dataAccess.ExecuteAsync(request));
@@ -63,11 +64,11 @@ namespace TicketMate.Persistence.Tests.DataRequestTests.UserTests
         [Fact]
         public async Task InsertUser_Given_UsernameAlreadyTaken_ShouldThrow_MySqlException()
         {
-            var firstName = Guid.NewGuid().ToString();
-            var lastName = Guid.NewGuid().ToString();
-            var email = Guid.NewGuid().ToString();
-            var avatar = Guid.NewGuid().ToString();
-            var phoneNumber = Guid.NewGuid().ToString();
+            var firstName = TestString.Random();
+            var lastName = TestString.Random();
+            var email = TestString.Random();
+            var avatar = TestString.Random();
+            var phoneNumber = TestString.Random(15);
             
 
             var requestOne = new InsertUser(Guid.NewGuid(), firstName, lastName, phoneNumber, email, avatar, 1, "pwHash");
