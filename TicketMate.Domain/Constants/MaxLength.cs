@@ -13,5 +13,8 @@
         public const int Avatar = 256;
 
         public const int PasswordHash = 256;
+        public const int PasswordHash = 100;
+
+        public const int ProjectName = 80;
     }
 }

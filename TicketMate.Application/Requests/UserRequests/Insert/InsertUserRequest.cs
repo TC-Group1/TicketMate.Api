@@ -1,5 +1,4 @@
-﻿using Org.BouncyCastle.Asn1;
-using TicketMate.Domain.Constants;
+﻿using TicketMate.Domain.Constants;
 using TicketMate.Domain.Validation.GuidValidation;
 using TicketMate.Domain.Validation.StringValidation;
 
@@ -19,10 +18,10 @@ namespace TicketMate.Application.Requests.UserRequests.Insert
             PasswordHash = passwordHash;
         }
 
-        public InsertUserRequest()
-        {
+        #endregion
 
-        }
+        #region Public Properties
+
         public Guid Guid { get; set; }
         public string FirstName { get; set; } = null!;
         public string LastName { get; set; } = null!;
@@ -31,6 +30,10 @@ namespace TicketMate.Application.Requests.UserRequests.Insert
         public string Avatar { get; set; } = null!;
         public int IsActive { get; set; }
         public string PasswordHash { get; set; } = null!;
+
+        #endregion
+
+        #region IValidatable Validation
 
         public bool IsValid(out Validator validator)
         {
@@ -46,5 +49,7 @@ namespace TicketMate.Application.Requests.UserRequests.Insert
 
             return validator.IsPassingAllRules;
         }
+
+        #endregion
     }
 }
