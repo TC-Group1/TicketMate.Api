@@ -1,4 +1,5 @@
 ﻿using TicketMate.Persistence.DataRequestObjects.UserRequests;
+using TicketMate.Persistence.Tests.DataRequestTests.Helpers;
 
 namespace TicketMate.Persistence.Tests.DataRequestTests.UserTests
 {
@@ -16,7 +17,14 @@ namespace TicketMate.Persistence.Tests.DataRequestTests.UserTests
             var guid = Guid.NewGuid();
 
             // insert user to delete
-            await _dataAccess.ExecuteAsync(new InsertUser(guid, $"Username-{guid}", "pwHash"));
+            await _dataAccess.ExecuteAsync(new InsertUser(
+                                        guid, TestString.Random(),
+                                        TestString.Random(),
+                                        TestString.Random(15),
+                                        TestString.Random(),
+                                        TestString.Random(),
+                                        1,
+                                        TestString.Random()));
 
             // get user by guid to ensure it was inserted
             var userBeforeDeleting = await _dataAccess.FetchAsync(new GetUserByGuid(guid));
