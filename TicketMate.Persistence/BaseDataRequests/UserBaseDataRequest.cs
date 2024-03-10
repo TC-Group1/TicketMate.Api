@@ -27,13 +27,13 @@ namespace TicketMate.Persistence.BaseDataRequests
 
         public UserBaseDataRequest(
             Guid guid,
-            string passwordHash,
-            string email,
-            string avatar,
             string firstName,
             string lastName,
             string phoneNumber,
-            int isActive)  
+            string email,
+            string avatar,
+            int isActive,
+            string passwordHash)  
         {
             Guid = guid; 
             PasswordHash = passwordHash; 

@@ -10,23 +10,25 @@ namespace TicketMate.Persistence.DataRequestObjects.UserRequests
     {
         public UpdateUserByGuid(
             Guid guid,
-            string passwordHash,
-            string email,
-            string avatar,
             string firstName,
             string lastName,
             string phoneNumber,
-            int isActive) 
+            string email,
+            string avatar,
+            int isActive,
+            string passwordHash)
             : base(
                 guid,
-                passwordHash,
-                email,
-                avatar,
                 firstName,
                 lastName,
                 phoneNumber,
-                isActive) { }
-        
+                email,
+                avatar,
+                isActive,
+                passwordHash)
+        { }
+                            
+
         public override string GetSql() => $"UPDATE {DatabaseTable.Users} " +
                                            $"SET PASSWORDHASH = @passwordHash, " +
                                            $"EMAIL = @email, " +
