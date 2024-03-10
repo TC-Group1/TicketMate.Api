@@ -1,4 +1,5 @@
-﻿using Org.BouncyCastle.Asn1.Ocsp;
+﻿using MySql.Data.MySqlClient;
+using Org.BouncyCastle.Asn1.Ocsp;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -17,7 +18,8 @@ namespace TicketMate.Persistence.Tests.DataRequestTests.UserTests
             var guid = Guid.NewGuid();
 
             var createTestUser = new InsertUser(
-                                        guid, TestString.Random(),
+                                        guid,
+                                        TestString.Random(),
                                         TestString.Random(),
                                         TestString.Random(15),
                                         TestString.Random(),
@@ -42,7 +44,43 @@ namespace TicketMate.Persistence.Tests.DataRequestTests.UserTests
 
             Assert.Equal(1, rowsAffected);
 
-            await _dataAccess.ExecuteAsync(new DeleteUserByGuid(updateRequest.Guid));
+            await _dataAccess.ExecuteAsync(new DeleteUserByGuid(newUserGuid));
+        }
+
+        [Fact]
+        public async Task UpdateUserByGuid_IfWrongValuesEntered_ShouldThrow_MySqlException()
+        {
+            var guid = Guid.NewGuid();
+
+            var createTestUser = new InsertUser(
+                                        guid,
+                                        TestString.Random(),
+                                        TestString.Random(),
+                                        TestString.Random(15),
+                                        TestString.Random(),
+                                        TestString.Random(),
+                                        1,
+                                        TestString.Random());
+
+            await _dataAccess.ExecuteAsync(createTestUser);
+
+            var newUserGuid = createTestUser.Guid;
+
+            var invalidUpdateUserRequest = new UpdateUserByGuid(
+                                        newUserGuid,
+                                        TestString.Random(),
+                                        TestString.Random(),
+                                        TestString.Random(15),
+                                        TestString.Random(),
+                                        TestString.Random(),
+                                        1,
+                                        TestString.Random());
+
+            var invalidRequest = await _dataAccess.ExecuteAsync(invalidUpdateUserRequest);
+
+            await Assert.ThrowsAsync<MySqlException>(async () => await _dataAccess.ExecuteAsync(invalidUpdateUserRequest));
+
+            await _dataAccess.ExecuteAsync(new DeleteUserByGuid(newUserGuid));
         }
 
     }

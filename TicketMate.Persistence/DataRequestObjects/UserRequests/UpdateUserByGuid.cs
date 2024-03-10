@@ -38,6 +38,14 @@ namespace TicketMate.Persistence.DataRequestObjects.UserRequests
                                            $"PHONENUMBER = @phoneNumber, " +
                                            $"ISACTIVE = @isActive " +
                                            $"WHERE GUID = @guid";
+
+        //public string ValidateUpdateSql()
+        //{
+        //    if (string.IsNullOrEmpty(this.PasswordHash) || string.IsNullOrEmpty(this.PhoneNumber) || string.IsNullOrEmpty(this.FirstName) || string.IsNullOrEmpty(this.LastName) || string.IsNullOrEmpty(this.Avatar) || string.IsNullOrEmpty(this.Email))
+        //    {
+        //         MySqlException()
+        //    }
+        //}
         
     }
 }
