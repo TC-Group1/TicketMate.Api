@@ -14,7 +14,7 @@ namespace TicketMate.Persistence.Tests.DataRequestTests.UserTests
     public class UpdateUserByGuidTests : BaseDataRequestTest
     {
         [Fact]
-        public async Task UpdateUserByGuid_UserExists_ShouldReturnOneRowAffected()
+        public async Task UpdateUserByGuid_IfUpdateSuccessful_ShouldReturnOneRowAffected()
         {
             var guid = Guid.NewGuid();
 
@@ -29,13 +29,11 @@ namespace TicketMate.Persistence.Tests.DataRequestTests.UserTests
                                         TestString.Random());
             await _dataAccess.ExecuteAsync(createTestUser);
 
-            var newUserGuid = createTestUser.Guid;
-
             var updateRequest = new UpdateUserByGuid(
-                                        newUserGuid,
+                                        guid,
                                         TestString.Random(),
                                         TestString.Random(),
-                                        TestString.Random(15),
+                                        TestString.Random(14),
                                         TestString.Random(),
                                         TestString.Random(),
                                         1,
@@ -45,7 +43,7 @@ namespace TicketMate.Persistence.Tests.DataRequestTests.UserTests
 
             Assert.Equal(1, rowsAffected);
 
-            await _dataAccess.ExecuteAsync(new DeleteUserByGuid(newUserGuid));
+            await _dataAccess.ExecuteAsync(new DeleteUserByGuid(guid));
         }
 
 
@@ -144,6 +142,47 @@ namespace TicketMate.Persistence.Tests.DataRequestTests.UserTests
             await Assert.ThrowsAsync<MySqlException>(async () => await _dataAccess.ExecuteAsync(invalidUpdateRequest));
 
             await _dataAccess.ExecuteAsync(new DeleteUserByGuid(invalidUpdateRequest.Guid));
+        }
+
+        [Fact]
+        public async Task UpdateUserByGuid_IfValuesUpdatedAreAccurate_ShouldPass()
+        {
+            var guid = Guid.NewGuid();
+
+            var testUser = new InsertUser(
+                                        guid,
+                                        TestString.Random(MaxLength.FirstName),
+                                        TestString.Random(MaxLength.LastName),
+                                        TestString.Random(7),
+                                        TestString.Random(MaxLength.Email),
+                                        TestString.Random(MaxLength.Avatar),
+                                        1,
+                                        TestString.Random(MaxLength.PasswordHash));
+
+            await _dataAccess.ExecuteAsync(testUser);
+
+            var updateRequest = new UpdateUserByGuid(
+                                        guid,
+                                        TestString.Random(MaxLength.FirstName),
+                                        TestString.Random(MaxLength.LastName),
+                                        TestString.Random(14),
+                                        TestString.Random(MaxLength.Email),
+                                        TestString.Random(MaxLength.Avatar),
+                                        1,
+                                        TestString.Random(MaxLength.PasswordHash));
+            await _dataAccess.ExecuteAsync(updateRequest);
+
+            var getUser = await _dataAccess.FetchAsync(new GetUserByGuid(guid));
+
+            Assert.Equal(updateRequest.FirstName, getUser.FirstName);
+            Assert.Equal(updateRequest.LastName, getUser.LastName);
+            Assert.Equal(updateRequest.PhoneNumber, getUser.PhoneNumber);
+            Assert.Equal(updateRequest.Email, getUser.Email);
+            Assert.Equal(updateRequest.Avatar, getUser.Avatar);
+            Assert.Equal(updateRequest.IsActive, getUser.IsActive);
+            Assert.Equal(updateRequest.PasswordHash, getUser.PasswordHash);
+
+            await _dataAccess.ExecuteAsync(new DeleteUserByGuid(guid));
         }
 
     }
