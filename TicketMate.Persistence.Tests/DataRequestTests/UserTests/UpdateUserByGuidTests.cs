@@ -185,5 +185,24 @@ namespace TicketMate.Persistence.Tests.DataRequestTests.UserTests
             await _dataAccess.ExecuteAsync(new DeleteUserByGuid(guid));
         }
 
+        [Fact]
+        public async Task UpdateUserByGuid_IfUserGuidDoesNotExist_ShouldReturn_ZeroRowsAffected()
+        {
+            var fakeGuid = Guid.NewGuid();
+
+            var userNotHere = new UpdateUserByGuid(
+                                                fakeGuid, 
+                                                TestString.Random(MaxLength.FirstName),
+                                                TestString.Random(MaxLength.LastName),
+                                                TestString.Random(MaxLength.PhoneNumber),
+                                                TestString.Random(MaxLength.Email),
+                                                TestString.Random(MaxLength.Avatar),
+                                                1,
+                                                TestString.Random(MaxLength.PasswordHash));
+
+            var rowsAffected = await _dataAccess.ExecuteAsync(userNotHere);
+
+            Assert.Equal(0, rowsAffected);
+        }
     }
 }
