@@ -10,11 +10,11 @@ namespace TicketMate.Persistence.DataRequestObjects.ProjectRequests
     {
         public Guid Guid { get; set; }
 
-        public string Name { get; set; }
+        public string? Name { get; set; }
 
-        public bool IsActive { get; set; }
+        public bool? IsActive { get; set; }
 
-        public UpdateProjectByGuid(Guid guid, string name, bool isActive) 
+        public UpdateProjectByGuid(Guid guid, string? name, bool? isActive) 
         {
             Guid = guid;
             Name = name;
