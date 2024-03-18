@@ -17,7 +17,10 @@ namespace TicketMate.Persistence.DataRequestObjects.ProjectRequests
         public UpdateProjectByGuid(Guid guid, string? name, bool? isActive) 
         {
             Guid = guid;
+
+            if (name == "") name = null;
             Name = name;
+
             IsActive = isActive;
         }
 
