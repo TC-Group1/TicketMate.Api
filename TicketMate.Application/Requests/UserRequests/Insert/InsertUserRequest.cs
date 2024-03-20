@@ -8,6 +8,11 @@ namespace TicketMate.Application.Requests.UserRequests.Insert
     {
         #region Constructor
 
+        public InsertUserRequest()
+        {
+                
+        }
+
         public InsertUserRequest(Guid guid, string firstName, string lastName, string phoneNumber, string email, string avatar, int isActive, string passwordHash)
         {
             Guid = guid;
