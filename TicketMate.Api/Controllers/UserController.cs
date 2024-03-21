@@ -18,5 +18,8 @@ namespace TicketMate.Api.Controllers
 
         [HttpPost("User/InsertUser")]
         public async Task InsertUser(InsertUserRequest request) => await _orchestrator.ExecuteRequestAsync(request);
+
+        [HttpPut("User/UpdateUserByGuid")]
+        public async Task UpdateUserByGuid()
     }
 }
