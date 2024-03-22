@@ -8,7 +8,7 @@ namespace TicketMate.Persistence.Tests.DataRequestTests.RoleTests
         [Fact]
         public async Task InsertRole_Given_RoleIsInserted_Should_ReturnOneRowAffected()
         {
-            var roleName = "yoda";
+            var roleName = TestString.Random(15);
 
             var request = new InsertRoleByName(roleName);
 
