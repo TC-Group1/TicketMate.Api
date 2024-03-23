@@ -1,6 +1,5 @@
 ﻿using MySql.Data.MySqlClient;
 using TicketMate.Persistence.DataRequestObjects.RolesRequests;
-using TicketMate.Persistence.DataRequestObjects.UserRequests;
 using TicketMate.Persistence.Tests.DataRequestTests.Helpers;
 
 namespace TicketMate.Persistence.Tests.DataRequestTests.RoleTests
@@ -29,7 +28,7 @@ namespace TicketMate.Persistence.Tests.DataRequestTests.RoleTests
             await _dataAccess.ExecuteAsync(new InsertRoleByName(roleName));
 
             var request = new InsertRoleByName(roleName);
-                                       
+
             var exception = await Record.ExceptionAsync(async () => await _dataAccess.ExecuteAsync(request));
 
             Assert.IsType<MySqlException>(exception);
