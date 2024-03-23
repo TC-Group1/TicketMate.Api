@@ -1,5 +1,4 @@
 ﻿using TicketMate.Persistence.DataRequestObjects.RolesRequests;
-using TicketMate.Persistence.DataRequestObjects.UserRequests;
 using TicketMate.Persistence.Tests.DataRequestTests.Helpers;
 
 namespace TicketMate.Persistence.Tests.DataRequestTests.RoleTests
