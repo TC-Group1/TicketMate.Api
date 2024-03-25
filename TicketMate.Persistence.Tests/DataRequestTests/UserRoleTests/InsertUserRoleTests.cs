@@ -1,9 +1,7 @@
 ﻿using MySql.Data.MySqlClient;
-using Org.BouncyCastle.Asn1.Ocsp;
 using TicketMate.Persistence.DataRequestObjects.RolesRequests;
 using TicketMate.Persistence.DataRequestObjects.UserRequests;
 using TicketMate.Persistence.DataRequestObjects.UserRolesRequests;
-using TicketMate.Persistence.DataTransferObjects;
 using TicketMate.Persistence.Tests.DataRequestTests.Helpers;
 
 namespace TicketMate.Persistence.Tests.DataRequestTests.UserRoleTests

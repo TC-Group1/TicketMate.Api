@@ -5,16 +5,16 @@ using TicketMate.Persistence.Tests.DataRequestTests.Helpers;
 
 namespace TicketMate.Persistence.Tests.DataRequestTests.UserRoleTests
 {
-    public class GetUserRolesByUserIdTests : BaseDataRequestTest
+    public class DeleteUserRolesByUserIdTests : BaseDataRequestTest
     {
         [Fact]
-        public async Task GetUserRoleByUserId_Given_UserNotExisting_ShouldReturn_Null()
+        public async Task DeleteUserRolesByUserId_Given_UserRoleNotExisting_ShouldReturn_ZeroRowsAffected()
         {
-            Assert.Null(await _dataAccess.FetchAsync(new GetUserRolesByUserId(userId: RandomId.Random())));
+            Assert.Equal(0, await _dataAccess.ExecuteAsync(new DeleteUserRolesByUserId(RandomId.Random())));
         }
 
         [Fact]
-        public async Task GetUserRoleById_Given_UserRoleExists_ShouldReturn_UserRoles_DTO()
+        public async Task DeleteUserRolesByUserId_Given_UserRolesExists_ShouldReturn_OneRowAffected()
         {
             var guid = Guid.NewGuid();
             var roleName = TestString.Random(15);
@@ -46,14 +46,14 @@ namespace TicketMate.Persistence.Tests.DataRequestTests.UserRoleTests
             // Insert Test UserRole //
             await _dataAccess.ExecuteAsync(new InsertUserRole(userDto.Id, roleDto.Id));
 
-            var result = await _dataAccess.FetchAsync(new GetUserRolesByUserId(userDto.Id));
+            var result = await _dataAccess.ExecuteAsync(new DeleteUserRolesByUserId(userDto.Id));
 
             // Delete Inserted records
             await _dataAccess.ExecuteAsync(new DeleteUserRolesByUserId(userDto.Id));
             await _dataAccess.ExecuteAsync(new DeleteUserByGuid(guid));
             await _dataAccess.ExecuteAsync(new DeleteRoleByName(roleName));
 
-            Assert.NotNull(result);
+            Assert.Equal(1, result);
         }
     }
 }
