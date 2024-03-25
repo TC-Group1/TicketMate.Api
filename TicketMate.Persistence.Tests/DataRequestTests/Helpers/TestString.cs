@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Text;
 
 namespace TicketMate.Persistence.Tests.DataRequestTests.Helpers
 {
@@ -16,7 +12,7 @@ namespace TicketMate.Persistence.Tests.DataRequestTests.Helpers
 
             var sb = new StringBuilder(length);
 
-            for(int i = 0; i < length; i++)
+            for (int i = 0; i < length; i++)
             {
                 var randomIndex = random.Next(0, _characters.Length);
 
