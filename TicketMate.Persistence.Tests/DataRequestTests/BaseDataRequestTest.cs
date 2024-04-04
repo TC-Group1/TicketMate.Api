@@ -12,8 +12,6 @@ namespace TicketMate.Persistence.Tests.DataRequestTests
             /*
                 Hidden.cs class has been added to Git Ignore - You will need to add your own Hidden.cs to the TicketMate.Persistence.Tests project
                 and add the properties for Hidden.cs since this class is not tracked in Git Source Control.
-
-                Docker =>  docker -compose up at repos\TicketMate.Database\ticketmate-docker
                 
                 Example:    
                             internal class Hidden

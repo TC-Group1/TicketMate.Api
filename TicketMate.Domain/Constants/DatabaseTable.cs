@@ -7,6 +7,7 @@
         public const string Roles = "Roles";
         
         public const string UserRoles = "UserRoles";
+
         public const string Projects = "Projects";
     }
 }
