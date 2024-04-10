@@ -3,6 +3,7 @@ using TicketMate.Application.Abstraction;
 using TicketMate.Application.Requests.UserRequests.DeleteByGuid;
 using TicketMate.Application.Requests.UserRequests.GetByGuid;
 using TicketMate.Application.Requests.UserRequests.Insert;
+using TicketMate.Application.Requests.UserRequests.UpdateByGuid;
 
 namespace TicketMate.Api.Controllers
 {
@@ -20,6 +21,6 @@ namespace TicketMate.Api.Controllers
         public async Task InsertUser(InsertUserRequest request) => await _orchestrator.ExecuteRequestAsync(request);
 
         [HttpPut("User/UpdateUserByGuid")]
-        public async Task UpdateUserByGuid()
+        public async Task UpdateUserByGuid(UpdateUserByGuidRequest request) => await _orchestrator.ExecuteRequestAsync(request);
     }
 }

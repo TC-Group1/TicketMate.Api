@@ -1,6 +1,7 @@
 ﻿using MySql.Data.MySqlClient;
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -32,9 +33,9 @@ namespace TicketMate.Application.Requests.UserRequests.UpdateByGuid
             }
             catch (MySqlException ex)
             {
-                if (ex.Message.)
+                if (ex.Number == (1216) || ex.Number == 1217)
                 {
-
+                    throw new UniqueConstraintException("Foreign key constraint violation occurred.", ex);
                 }
 
                 throw new OperationFailedException();
