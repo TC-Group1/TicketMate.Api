@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace TicketMate.Domain.Constants
 {
-    public class ErrorCodes
+    public class MySqlExceptionNumber
     {
         public const int DuplicateEntry = 1062;
     }

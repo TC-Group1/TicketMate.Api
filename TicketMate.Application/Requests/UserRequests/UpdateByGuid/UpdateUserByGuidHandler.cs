@@ -8,9 +8,10 @@ using System.Threading.Tasks;
 using TicketMate.Domain.Constants;
 using TicketMate.Persistence.DataRequestObjects.UserRequests;
 
+
 namespace TicketMate.Application.Requests.UserRequests.UpdateByGuid
 {
-    public class UpdateUserByGuidHandler : DataRequestHandler<UpdateUserByGuidRequest>
+    internal class UpdateUserByGuidHandler : DataRequestHandler<UpdateUserByGuidRequest>
     {
         public UpdateUserByGuidHandler(IDataAccess dataAccess) : base(dataAccess) { }
         public override async Task ExecuteRequestAsync(UpdateUserByGuidRequest request)
@@ -34,9 +35,21 @@ namespace TicketMate.Application.Requests.UserRequests.UpdateByGuid
             }
             catch (MySqlException ex)
             {
-                if (ex.Number == (ErrorCodes.DuplicateEntry))
+                if (ex.Number == (MySqlExceptionNumber.DuplicateEntry))
                 {
-                    throw new UniqueConstraintException("Foreign key constraint violation occurred.", ex);
+                    if (ex.Message.EndsWith("'users.PhoneNumber'"))
+                    {
+                        throw new AlreadyExistsException(nameof(User), (request.PhoneNumber, nameof(request.PhoneNumber)));
+                    }
+
+
+                    if (ex.Number == (MySqlExceptionNumber.DuplicateEntry))
+                    {
+                        if (ex.Message.EndsWith("'users.Email'"))
+                        {
+                            throw new AlreadyExistsException(nameof(User), (request.Email, nameof(request.Email)));
+                        }
+                    }
                 }
 
                 throw new OperationFailedException();
