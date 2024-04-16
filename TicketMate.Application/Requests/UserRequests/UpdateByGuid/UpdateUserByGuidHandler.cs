@@ -5,6 +5,7 @@ using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using TicketMate.Domain.Constants;
 using TicketMate.Persistence.DataRequestObjects.UserRequests;
 
 namespace TicketMate.Application.Requests.UserRequests.UpdateByGuid
@@ -33,7 +34,7 @@ namespace TicketMate.Application.Requests.UserRequests.UpdateByGuid
             }
             catch (MySqlException ex)
             {
-                if (ex.Number == (1216) || ex.Number == 1217)
+                if (ex.Number == (ErrorCodes.DuplicateEntry))
                 {
                     throw new UniqueConstraintException("Foreign key constraint violation occurred.", ex);
                 }
