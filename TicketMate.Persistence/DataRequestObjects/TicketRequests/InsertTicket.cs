@@ -1,0 +1,36 @@
+﻿namespace TicketMate.Persistence.DataRequestObjects.TicketRequests
+{
+    public class InsertTicket : IDataExecute
+    {
+        public InsertTicket(
+            Guid guid,
+            Guid projectGuid,
+            string title,
+            string description,
+            int priorityId,
+            int statusId,
+            Guid createdByUserGuid)
+        {
+            Guid = guid;
+            ProjectGuid = projectGuid;
+            Title = title;
+            Description = description;
+            PriorityId = priorityId;
+            StatusId = statusId;
+            CreatedByUserGuid = createdByUserGuid;
+        }
+
+        public Guid Guid { get; set; }
+        public Guid ProjectGuid { get; set; }
+        public string Title { get; set; } = string.Empty;
+        public string Description { get; set; } = string.Empty;
+        public int PriorityId { get; set; }
+        public int StatusId { get; set; }
+        public DateTime DateCreated { get; set; } = DateTime.UtcNow;
+        public Guid CreatedByUserGuid { get; set; }
+        public DateTime? DateUpdated { get; set; } = null;
+        public object? GetParameters() => this;
+        public string GetSql() => $"INSERT INTO {DatabaseTable.Tickets} (Guid, ProjectId, Title, Description, PriorityId, StatusId, CreatedByUserId) " +
+                                  $"VALUES (@Guid, @ProjectId, @Title, @Description, @PriorityId, @StatusId, @CreatedByUserId)";
+    }
+}
