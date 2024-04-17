@@ -1,4 +1,4 @@
-﻿namespace TicketMate.Persistence.Tests.DataRequestTests.Helpers
+﻿namespace TicketMate.Tests.Shared.Helpers
 {
     public class RandomId
     {

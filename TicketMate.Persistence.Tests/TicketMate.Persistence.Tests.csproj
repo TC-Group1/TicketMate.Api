@@ -24,6 +24,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\TicketMate.Persistence\TicketMate.Persistence.csproj" />
+    <ProjectReference Include="..\TicketMate.Tests.Shared\TicketMate.Tests.Shared.csproj" />
   </ItemGroup>
 
 </Project>

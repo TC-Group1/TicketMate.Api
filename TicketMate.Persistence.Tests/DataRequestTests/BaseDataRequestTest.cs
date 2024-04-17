@@ -1,5 +1,6 @@
 ﻿using TicketMate.Persistence.Abstraction;
 using TicketMate.Persistence.Implementation;
+using TicketMate.Tests.Shared;
 
 namespace TicketMate.Persistence.Tests.DataRequestTests
 {

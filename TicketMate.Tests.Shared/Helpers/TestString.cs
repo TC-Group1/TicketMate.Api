@@ -1,6 +1,6 @@
 ﻿using System.Text;
 
-namespace TicketMate.Persistence.Tests.DataRequestTests.Helpers
+namespace TicketMate.Tests.Shared.Helpers
 {
     public class TestString
     {
