@@ -12,7 +12,12 @@ namespace TicketMate.Application.Requests.UserRequests.UpdateByGuid
     public class UpdateUserByGuidRequest : IValidatable, IRequest
     {
         #region Constructor
-        UpdateUserByGuidRequest(Guid guid, string firstName, string lastName, string phoneNumber, string email, string avatar, int isActive, string passwordHash) 
+
+        public UpdateUserByGuidRequest()
+        {
+                
+        }
+        UpdateUserByGuidRequest(Guid guid, string firstName, string lastName, string phoneNumber, string email, string avatar, int? isActive, string passwordHash) 
         {
             Guid = guid;
             FirstName = firstName;
@@ -27,13 +32,13 @@ namespace TicketMate.Application.Requests.UserRequests.UpdateByGuid
 
         #region Public Properties
         public Guid Guid { get; set; }
-        public string FirstName { get; set; } = null!;
-        public string LastName { get; set; } = null!;
-        public string PhoneNumber { get; set; } = null!;
-        public string Email { get; set; } = null!;
-        public string Avatar { get; set; } = null!;
-        public int IsActive { get; set; }
-        public string PasswordHash { get; set; } = null!;
+        public string? FirstName { get; set; } 
+        public string? LastName { get; set; } 
+        public string? PhoneNumber { get; set; } 
+        public string? Email { get; set; } 
+        public string? Avatar { get; set; } 
+        public int? IsActive { get; set; }
+        public string? PasswordHash { get; set; } 
 
         #endregion
 
@@ -46,7 +51,7 @@ namespace TicketMate.Application.Requests.UserRequests.UpdateByGuid
                 new StringLengthLimitRule(LastName, nameof(LastName), MaxLength.LastName),
                 new StringLengthLimitRule(PhoneNumber, nameof(PhoneNumber), MaxLength.PhoneNumber),
                 new StringLengthLimitRule(Email, nameof(Email), MaxLength.Email),
-                new StringLengthLimitRule(Avatar, nameof(Avatar), MaxLength.Avatar),
+                new StringLengthLimitRule(Avatar, nameof(Avatar), MaxLength.Avatar, isRequiredString : false),
                 new StringLengthLimitRule(PasswordHash, nameof(PasswordHash), MaxLength.PasswordHash)
                 );
             return validator.IsPassingAllRules;

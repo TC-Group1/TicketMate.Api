@@ -8,7 +8,7 @@ namespace TicketMate.Persistence.DataRequestObjects.UserRequests
 {
     public class UpdateUserByGuid :  IDataExecute
     {
-        public UpdateUserByGuid(Guid guid, string firstName, string lastName, string phoneNumber, string email, string avatar, int isActive, string passwordHash)
+        public UpdateUserByGuid(Guid guid, string firstName, string lastName, string phoneNumber, string email, string avatar, int? isActive, string passwordHash)
         {
             Guid = guid;
             FirstName = firstName;
@@ -34,7 +34,7 @@ namespace TicketMate.Persistence.DataRequestObjects.UserRequests
 
         public string? PhoneNumber { get; set; }
 
-        public int IsActive { get; set; }
+        public int? IsActive { get; set; }
 
         public object? GetParameters() => this;
 
