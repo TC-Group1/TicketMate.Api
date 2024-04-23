@@ -4,6 +4,9 @@ using TicketMate.Persistence.Implementation;
 
 namespace TicketMate.Tests.Shared.Helpers
 {
+    /// <summary>
+    /// Allows you to Access the DB within the Test Helpers
+    /// </summary>
     [ExcludeFromCodeCoverage]
     public static class TestDataAccess
     {

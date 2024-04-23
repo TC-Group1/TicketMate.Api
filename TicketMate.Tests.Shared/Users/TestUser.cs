@@ -1,6 +1,5 @@
 ﻿using System.Diagnostics.CodeAnalysis;
 using TicketMate.Persistence.Abstraction;
-using TicketMate.Persistence.DataRequestObjects.ProjectRequests;
 using TicketMate.Persistence.DataRequestObjects.UserRequests;
 using TicketMate.Persistence.DataTransferObjects;
 using TicketMate.Tests.Shared.Helpers;
