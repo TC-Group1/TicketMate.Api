@@ -1,5 +1,8 @@
 ﻿namespace TicketMate.Persistence.DataRequestObjects.TicketRequests
 {
+    /// <summary>
+    /// Insert Ticket Request
+    /// </summary>
     public class InsertTicket : IDataExecute
     {
         public InsertTicket(
@@ -31,8 +34,7 @@
         public DateTime? DateUpdated { get; set; } = null;
         public object? GetParameters() => this;
         public string GetSql() => @$"INSERT INTO {DatabaseTable.Tickets} 
-                                  (Guid, ProjectId, Title, Description, PriorityId, StatusId, CreatedByUserId)
-                                  VALUES 
+                                  (Guid, ProjectId, Title, Description, PriorityId, StatusId, CreatedByUserId) VALUES 
                                   (@Guid, (SELECT Id FROM {DatabaseTable.Projects} WHERE Guid = @ProjectGuid), @Title, @Description, @PriorityId, @StatusId, 
                                   (SELECT Id FROM {DatabaseTable.Users} WHERE Guid = @CreatedByUserGuid))";
     }
