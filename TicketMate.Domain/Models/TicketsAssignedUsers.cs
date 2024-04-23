@@ -2,8 +2,8 @@
 {
     public class TicketsAssignedUsers
     {
-        public int Id { get; set; }
-        public int TicketId { get; set; }
-        public int UserId { get; set; }
+        public Guid Guid { get; set; }
+        public Guid TicketGuid  { get; set; }
+        public Guid UserGuid { get; set; }
     }
 }
