@@ -7,6 +7,9 @@ using TicketMate.Tests.Shared.Users;
 
 namespace TicketMate.Persistence.Tests.DataRequestTests.Tickets
 {
+    /// <summary>
+    /// Persistence Layer Tests for Getting a Ticket by GUID
+    /// </summary>
     public class GetTicketByGuidTests : BaseDataRequestTest
     {
         [Fact]
