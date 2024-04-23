@@ -6,6 +6,9 @@ using TicketMate.Tests.Shared.Helpers;
 
 namespace TicketMate.Tests.Shared.Projects
 {
+    /// <summary>
+    /// Shared Test Helper Used to Insert and Fetch a Project_DTO
+    /// </summary>
     [ExcludeFromCodeCoverage]
     public static class TestProject
     {

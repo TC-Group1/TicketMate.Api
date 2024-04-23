@@ -1,7 +1,9 @@
 ﻿using TicketMate.Persistence.DataRequestObjects.ProjectRequests;
 using TicketMate.Persistence.DataRequestObjects.TicketRequests;
+using TicketMate.Persistence.DataRequestObjects.UserRequests;
 using TicketMate.Tests.Shared.Helpers;
 using TicketMate.Tests.Shared.Projects;
+using TicketMate.Tests.Shared.Users;
 
 namespace TicketMate.Persistence.Tests.DataRequestTests.Tickets
 {
@@ -18,15 +20,16 @@ namespace TicketMate.Persistence.Tests.DataRequestTests.Tickets
         {
             var projects_DTO = await TestProject.InsertAndFetchProjectDtoAsync();
 
+            var user_DTO = await TestUser.InsertAndFetchUsersDtoAsync();
+
             var ticketGuid = Guid.NewGuid();
 
             var insertTicketRequest = new InsertTicket(ticketGuid,
                                projects_DTO.Guid,
                                TestString.Random(),
                                TestString.Random(),
-                               1,
-                               1,
-                               Guid.NewGuid());
+                               null,
+                               user_DTO.Guid);
 
             await _dataAccess.ExecuteAsync(insertTicketRequest);
 
@@ -35,6 +38,7 @@ namespace TicketMate.Persistence.Tests.DataRequestTests.Tickets
             // Delete Inserted Results //
             await _dataAccess.ExecuteAsync(new DeleteTicketByGuid(ticketGuid));
             await _dataAccess.ExecuteAsync(new DeleteProjectByGuid(projects_DTO.Guid));
+            await _dataAccess.ExecuteAsync(new DeleteUserByGuid(user_DTO.Guid));
 
             Assert.NotNull(result);
 
