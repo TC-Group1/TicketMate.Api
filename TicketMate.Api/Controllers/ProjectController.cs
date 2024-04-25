@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using TicketMate.Application.Abstraction;
 using TicketMate.Application.Requests.ProjectRequests.Insert;
+using TicketMate.Application.Requests.ProjectRequests.GetByGuid;
 
 namespace TicketMate.Api.Controllers
 {
@@ -13,6 +14,7 @@ namespace TicketMate.Api.Controllers
         [HttpPost("Project/InsertProject")]
         public async Task InsertProject(InsertProjectRequest request) => await _orchestrator.ExecuteRequestAsync(request);
 
-        
+        [HttpGet("Project/GetProjectByGuid")]
+        public async Task GetByGuid(GetProjectByGuidRequest request) => await _orchestrator.GetRequestResponseAsync(request);
     }
 }
