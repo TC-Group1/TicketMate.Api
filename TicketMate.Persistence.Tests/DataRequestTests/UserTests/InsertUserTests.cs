@@ -1,6 +1,6 @@
 ﻿using MySql.Data.MySqlClient;
 using TicketMate.Persistence.DataRequestObjects.UserRequests;
-using TicketMate.Persistence.Tests.DataRequestTests.Helpers;
+using TicketMate.Tests.Shared.Helpers;
 
 namespace TicketMate.Persistence.Tests.DataRequestTests.UserTests
 {
@@ -69,7 +69,7 @@ namespace TicketMate.Persistence.Tests.DataRequestTests.UserTests
             var email = TestString.Random();
             var avatar = TestString.Random();
             var phoneNumber = TestString.Random(15);
-            
+
 
             var requestOne = new InsertUser(Guid.NewGuid(), firstName, lastName, phoneNumber, email, avatar, 1, "pwHash");
             var requestWithSameUsername = new InsertUser(Guid.NewGuid(), firstName, lastName, phoneNumber, email, avatar, 1, "pwHash");

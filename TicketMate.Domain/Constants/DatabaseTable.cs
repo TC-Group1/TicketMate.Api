@@ -9,5 +9,7 @@
         public const string UserRoles = "UserRoles";
 
         public const string Projects = "Projects";
+
+        public const string Tickets = "Tickets";
     }
 }

@@ -1,0 +1,50 @@
+﻿using TicketMate.Persistence.DataRequestObjects.ProjectRequests;
+using TicketMate.Persistence.DataRequestObjects.TicketRequests;
+using TicketMate.Persistence.DataRequestObjects.UserRequests;
+using TicketMate.Tests.Shared.Helpers;
+using TicketMate.Tests.Shared.Projects;
+using TicketMate.Tests.Shared.Users;
+
+namespace TicketMate.Persistence.Tests.DataRequestTests.Tickets
+{
+    /// <summary>
+    /// Persistence Layer Tests for Getting a Ticket by GUID
+    /// </summary>
+    public class GetTicketByGuidTests : BaseDataRequestTest
+    {
+        [Fact]
+        public async Task GetUserByGuid_Given_UserNotExisting_ShouldReturn_Null()
+        {
+            Assert.Null(await _dataAccess.FetchAsync(new GetTicketByGuid(Guid.NewGuid())));
+        }
+
+        [Fact]
+        public async Task GetTicketByGuid_Given_TicketExists_ShouldReturn_Ticket_DTO()
+        {
+            var projects_DTO = await TestProject.InsertAndFetchProjectDtoAsync();
+
+            var user_DTO = await TestUser.InsertAndFetchUsersDtoAsync();
+
+            var ticketGuid = Guid.NewGuid();
+
+            var insertTicketRequest = new InsertTicket(ticketGuid,
+                               projects_DTO.Guid,
+                               TestString.Random(),
+                               TestString.Random(),
+                               null,
+                               user_DTO.Guid);
+
+            await _dataAccess.ExecuteAsync(insertTicketRequest);
+
+            var result = await _dataAccess.FetchAsync(new GetTicketByGuid(ticketGuid));
+
+            // Delete Inserted Results //
+            await _dataAccess.ExecuteAsync(new DeleteTicketByGuid(ticketGuid));
+            await _dataAccess.ExecuteAsync(new DeleteProjectByGuid(projects_DTO.Guid));
+            await _dataAccess.ExecuteAsync(new DeleteUserByGuid(user_DTO.Guid));
+
+            Assert.NotNull(result);
+
+        }
+    }
+}

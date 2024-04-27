@@ -1,6 +1,6 @@
 ﻿using MySql.Data.MySqlClient;
 using TicketMate.Persistence.DataRequestObjects.RolesRequests;
-using TicketMate.Persistence.Tests.DataRequestTests.Helpers;
+using TicketMate.Tests.Shared.Helpers;
 
 namespace TicketMate.Persistence.Tests.DataRequestTests.RoleTests
 {

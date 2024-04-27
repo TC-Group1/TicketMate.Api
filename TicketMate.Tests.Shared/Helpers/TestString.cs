@@ -1,7 +1,10 @@
 ﻿using System.Text;
 
-namespace TicketMate.Persistence.Tests.DataRequestTests.Helpers
+namespace TicketMate.Tests.Shared.Helpers
 {
+    /// <summary>
+    /// Generate a Random Test String
+    /// </summary>
     public class TestString
     {
         private const string _characters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890-=+_)(*&^%$#@!";
