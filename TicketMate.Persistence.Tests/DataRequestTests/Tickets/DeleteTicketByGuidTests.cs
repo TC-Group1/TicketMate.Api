@@ -1,12 +1,48 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using TicketMate.Persistence.DataRequestObjects.TicketRequests;
+using TicketMate.Tests.Shared.Helpers;
+using TicketMate.Tests.Shared.Projects;
+using TicketMate.Tests.Shared.Users;
 
 namespace TicketMate.Persistence.Tests.DataRequestTests.Tickets
 {
-    internal class DeleteTicketByGuidTests
+    public class DeleteTicketByGuidTests : BaseDataRequestTest
     {
+        [Fact]
+        public async Task DeleteTicketByGuid_Given_TicketIsDeleted_ShouldReturn_ZeroRowsAffected()
+        {
+            Assert.Equal(0, await _dataAccess.ExecuteAsync(new DeleteTicketByGuid(Guid.NewGuid())));
+        }
+
+        [Fact]
+        public async Task DeleteTicketByGuid_Given_TicketNotDeleted_ShouldReturn_OneRowAffected()
+        {
+            var projects_DTO = await TestProject.InsertAndFetchProjectDtoAsync();
+
+            var user_DTO = await TestUser.InsertAndFetchUsersDtoAsync();
+
+            var ticketGuid = Guid.NewGuid();
+
+            // Insert Ticket to Delete //
+            await _dataAccess.ExecuteAsync(new InsertTicket(ticketGuid,
+                               projects_DTO.Guid,
+                               TestString.Random(),
+                               TestString.Random(),
+                               null,
+                               user_DTO.Guid));
+
+            // Get Ticket by Guid to Ensure it was Inserted //
+            var ticketBeforeDeleting = await _dataAccess.FetchAsync(new GetTicketByGuid(ticketGuid));
+
+            // Delete Ticket and Rows Affected //
+            var rowsAffectedWhenDeletingTicket = await _dataAccess.ExecuteAsync(new DeleteTicketByGuid(ticketGuid));
+
+            var ticketAfterDeleting = await _dataAccess.FetchAsync(new GetTicketByGuid(ticketGuid));
+
+            Assert.NotNull(ticketBeforeDeleting);
+
+            Assert.Equal(1, rowsAffectedWhenDeletingTicket);
+
+            Assert.Null(ticketAfterDeleting);
+        }
     }
 }
