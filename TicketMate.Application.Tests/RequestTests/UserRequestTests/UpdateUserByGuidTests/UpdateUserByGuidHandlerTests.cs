@@ -52,11 +52,13 @@ namespace TicketMate.Application.Tests.RequestTests.UserRequestTests.UpdateUserB
                 PhoneNumber = "980-000-0000"
             };
 
-            var ex = MySqlExceptionHelper.Instantiate("Duplicate entry 'testPhoneNumber' for key 'users.PhoneNumber'", MySqlExceptionNumber.DuplicateEntry);
+            var ex = new DataAccessException("Duplicate entry 'testPhoneNumber' for key 'users.PhoneNumber'", MySqlExceptionNumber.DuplicateEntry, null!);
 
             _mockDataAccess.Setup(_ => _.ExecuteAsync(It.IsAny<UpdateUserByGuid>())).Throws(ex);
 
-            await Assert.ThrowsAsync<AlreadyExistsException>(async () => await _handler.ExecuteRequestAsync(request));
+            var result = await Record.ExceptionAsync(async () => await _handler.ExecuteRequestAsync(request));
+
+            Assert.IsType<AlreadyExistsException>(result);
         }
     }
 }

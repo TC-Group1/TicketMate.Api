@@ -1,5 +1,6 @@
 ﻿using MySql.Data.MySqlClient;
 using TicketMate.Domain.Constants;
+using TicketMate.Domain.Exceptions;
 using TicketMate.Persistence.DataRequestObjects.ProjectRequests;
 using TicketMate.Persistence.Tests.DataRequestTests.Helpers;
 
@@ -85,7 +86,7 @@ namespace TicketMate.Persistence.Tests.DataRequestTests.ProjectTests
 
             var exception = await Record.ExceptionAsync(async () => await _dataAccess.ExecuteAsync(request));
 
-            Assert.IsType<MySqlException>(exception);
+            Assert.IsType<DataAccessException>(exception);
 
             await _dataAccess.ExecuteAsync(new DeleteProjectByGuid(guid));
         }

@@ -1,4 +1,5 @@
 ﻿using MySql.Data.MySqlClient;
+using TicketMate.Domain.Exceptions;
 using TicketMate.Persistence.DataRequestObjects.UserRequests;
 using TicketMate.Persistence.Tests.DataRequestTests.Helpers;
 
@@ -56,7 +57,7 @@ namespace TicketMate.Persistence.Tests.DataRequestTests.UserTests
             // assert that request throws MySqlException
             var exception = await Record.ExceptionAsync(async () => await _dataAccess.ExecuteAsync(request));
 
-            Assert.IsType<MySqlException>(exception);
+            Assert.IsType<DataAccessException>(exception);
 
             await _dataAccess.ExecuteAsync(new DeleteUserByGuid(request.Guid));
         }
@@ -78,7 +79,7 @@ namespace TicketMate.Persistence.Tests.DataRequestTests.UserTests
             await _dataAccess.ExecuteAsync(requestOne);
 
             // assert that requestWithSameUsername throws MySqlException
-            await Assert.ThrowsAsync<MySqlException>(async () => await _dataAccess.ExecuteAsync(requestWithSameUsername));
+            await Assert.ThrowsAsync<DataAccessException>(async () => await _dataAccess.ExecuteAsync(requestWithSameUsername));
 
             await _dataAccess.ExecuteAsync(new DeleteUserByGuid(requestOne.Guid));
         }

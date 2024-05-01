@@ -6,6 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using TicketMate.Domain.Constants;
+using TicketMate.Domain.Exceptions;
 using TicketMate.Persistence.DataRequestObjects.UserRequests;
 using TicketMate.Persistence.Tests.DataRequestTests.Helpers;
 
@@ -139,7 +140,7 @@ namespace TicketMate.Persistence.Tests.DataRequestTests.UserTests
 
             await _dataAccess.ExecuteAsync(createTestUser);
 
-            await Assert.ThrowsAsync<MySqlException>(async () => await _dataAccess.ExecuteAsync(invalidUpdateRequest));
+            await Assert.ThrowsAsync<DataAccessException>(async () => await _dataAccess.ExecuteAsync(invalidUpdateRequest));
 
             await _dataAccess.ExecuteAsync(new DeleteUserByGuid(invalidUpdateRequest.Guid));
         }

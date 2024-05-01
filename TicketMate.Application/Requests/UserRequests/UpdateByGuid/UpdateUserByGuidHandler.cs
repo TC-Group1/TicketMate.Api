@@ -33,9 +33,9 @@ namespace TicketMate.Application.Requests.UserRequests.UpdateByGuid
                     throw new OperationFailedException();
                 }
             }
-            catch (MySqlException ex)
+            catch (DataAccessException ex)
             {
-                if (ex.Number == (MySqlExceptionNumber.DuplicateEntry))
+                if (ex.ExceptionNumber == (MySqlExceptionNumber.DuplicateEntry))
                 {
                     if (ex.Message.EndsWith("'users.PhoneNumber'"))
                     {
@@ -43,7 +43,7 @@ namespace TicketMate.Application.Requests.UserRequests.UpdateByGuid
                     }
 
 
-                    if (ex.Number == (MySqlExceptionNumber.DuplicateEntry))
+                    if (ex.ExceptionNumber == (MySqlExceptionNumber.DuplicateEntry))
                     {
                         if (ex.Message.EndsWith("'users.Email'"))
                         {
