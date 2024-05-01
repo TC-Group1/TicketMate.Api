@@ -17,7 +17,7 @@ namespace TicketMate.Application.Requests.UserRequests.UpdateByGuid
         {
                 
         }
-        UpdateUserByGuidRequest(Guid guid, string firstName, string lastName, string phoneNumber, string email, string avatar, int? isActive, string passwordHash) 
+        public UpdateUserByGuidRequest(Guid guid, string firstName, string lastName, string phoneNumber, string email, string avatar, int? isActive, string passwordHash) 
         {
             Guid = guid;
             FirstName = firstName;
