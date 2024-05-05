@@ -13,7 +13,7 @@ using TicketMate.Persistence.Tests.DataRequestTests.Helpers;
 
 namespace TicketMate.Application.Tests.RequestTests.UserRequestTests.UpdateUserByGuidTests
 {
-    public class UpdateUserByGuidRequestTests : BaseDataRequestTest
+    public class UpdateUserByGuidRequestTests
     {
         [Fact]
         public void UpdateUserByGuidRequest_Given_ValidData_IsValid_ShouldReturn_True()
