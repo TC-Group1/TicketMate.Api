@@ -1,14 +1,8 @@
 ﻿using MySql.Data.MySqlClient;
-using Org.BouncyCastle.Asn1.Ocsp;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using TicketMate.Domain.Constants;
 using TicketMate.Domain.Exceptions;
 using TicketMate.Persistence.DataRequestObjects.UserRequests;
-using TicketMate.Persistence.Tests.DataRequestTests.Helpers;
+using TicketMate.Tests.Shared.Helpers;
 
 namespace TicketMate.Persistence.Tests.DataRequestTests.UserTests
 {
@@ -194,7 +188,7 @@ namespace TicketMate.Persistence.Tests.DataRequestTests.UserTests
             var fakeGuid = Guid.NewGuid();
 
             var userNotHere = new UpdateUserByGuid(
-                                                fakeGuid, 
+                                                fakeGuid,
                                                 TestString.Random(MaxLength.FirstName),
                                                 TestString.Random(MaxLength.LastName),
                                                 TestString.Random(MaxLength.PhoneNumber),

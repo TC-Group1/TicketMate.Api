@@ -2,7 +2,7 @@
 using TicketMate.Domain.Constants;
 using TicketMate.Domain.Exceptions;
 using TicketMate.Persistence.DataRequestObjects.ProjectRequests;
-using TicketMate.Persistence.Tests.DataRequestTests.Helpers;
+using TicketMate.Tests.Shared.Helpers;
 
 namespace TicketMate.Persistence.Tests.DataRequestTests.ProjectTests
 {
