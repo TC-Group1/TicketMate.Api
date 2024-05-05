@@ -126,7 +126,7 @@ namespace TicketMate.Persistence.Tests.DataRequestTests.UserTests
 
         [Theory]
         [MemberData(nameof(UpdateRequestExceedingMaxLength))]
-        public async Task UpdateUserByGuid_IfFieldExceedingMaxLength_ShouldThrow_MySqlException(UpdateUserByGuid invalidUpdateRequest)
+        public async Task UpdateUserByGuid_IfFieldExceedingMaxLength_ShouldThrow_DataAccessException(UpdateUserByGuid invalidUpdateRequest)
         {
             var createTestUser = new InsertUser(
                                         invalidUpdateRequest.Guid,
@@ -140,7 +140,9 @@ namespace TicketMate.Persistence.Tests.DataRequestTests.UserTests
 
             await _dataAccess.ExecuteAsync(createTestUser);
 
-            await Assert.ThrowsAsync<DataAccessException>(async () => await _dataAccess.ExecuteAsync(invalidUpdateRequest));
+            var exception = await Record.ExceptionAsync(async () => await _dataAccess.ExecuteAsync(invalidUpdateRequest));
+
+            Assert.IsType<DataAccessException>(exception);
 
             await _dataAccess.ExecuteAsync(new DeleteUserByGuid(invalidUpdateRequest.Guid));
         }

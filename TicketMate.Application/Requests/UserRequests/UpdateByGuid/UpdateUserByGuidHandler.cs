@@ -37,21 +37,8 @@ namespace TicketMate.Application.Requests.UserRequests.UpdateByGuid
             {
                 if (ex.ExceptionNumber == (MySqlExceptionNumber.DuplicateEntry))
                 {
-                    if (ex.Message.EndsWith("'users.PhoneNumber'"))
-                    {
-                        throw new AlreadyExistsException(nameof(User), (request.PhoneNumber, nameof(request.PhoneNumber)));
-                    }
-
-
-                    if (ex.ExceptionNumber == (MySqlExceptionNumber.DuplicateEntry))
-                    {
-                        if (ex.Message.EndsWith("'users.Email'"))
-                        {
-                            throw new AlreadyExistsException(nameof(User), (request.Email, nameof(request.Email)));
-                        }
-                    }
+                    throw new AlreadyExistsException(nameof(User), (request.PhoneNumber, nameof(request.PhoneNumber)), (request.Email, nameof(request.Email)));
                 }
-
                 throw new OperationFailedException();
             }
         }

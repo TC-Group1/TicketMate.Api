@@ -30,7 +30,7 @@ namespace TicketMate.Persistence.Tests.DataRequestTests.UserTests
         }
 
         [Fact]
-        public async Task InsertUser_Given_GuidAlreadyTaken_ShouldThrow_MySqlException()
+        public async Task InsertUser_Given_GuidAlreadyTaken_ShouldThrow_DataAccessException()
         {
             var guid = Guid.NewGuid();
 
