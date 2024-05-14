@@ -26,7 +26,6 @@ namespace TicketMate.Persistence.Tests.DataRequestTests.Tickets
                                projects_DTO.Guid,
                                TestString.Random(),
                                TestString.Random(),
-                               null,
                                user_DTO.Guid);
 
             var rowsAffected = await _dataAccess.ExecuteAsync(insertTicketRequest);
@@ -52,7 +51,6 @@ namespace TicketMate.Persistence.Tests.DataRequestTests.Tickets
                                projects_DTO.Guid,
                                TestString.Random(),
                                TestString.Random(),
-                               null,
                                user_DTO.Guid));
 
             // Create request with guid that was just inserted
@@ -60,7 +58,6 @@ namespace TicketMate.Persistence.Tests.DataRequestTests.Tickets
                                projects_DTO.Guid,
                                TestString.Random(),
                                TestString.Random(),
-                               null,
                                user_DTO.Guid);
 
             // assert that request throws MySqlException

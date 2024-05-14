@@ -10,8 +10,8 @@
             Guid projectGuid,
             string title,
             string description,
-            int? priorityId,
             Guid createdByUserGuid,
+            int? priorityId = null,
             int statusId = 1)
         {
             Guid = guid;

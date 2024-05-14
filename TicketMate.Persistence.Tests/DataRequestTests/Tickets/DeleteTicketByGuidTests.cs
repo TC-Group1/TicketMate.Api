@@ -27,7 +27,6 @@ namespace TicketMate.Persistence.Tests.DataRequestTests.Tickets
                                projects_DTO.Guid,
                                TestString.Random(),
                                TestString.Random(),
-                               null,
                                user_DTO.Guid));
 
             // Get Ticket by Guid to Ensure it was Inserted //

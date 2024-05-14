@@ -22,7 +22,6 @@ namespace TicketMate.Persistence.Tests.DataRequestTests.Tickets
                                projects_DTO.Guid,
                                TestString.Random(),
                                TestString.Random(),
-                               null,
                                user_DTO.Guid);
 
             await _dataAccess.ExecuteAsync(insertTicketRequest);
@@ -52,7 +51,6 @@ namespace TicketMate.Persistence.Tests.DataRequestTests.Tickets
                                projects_DTO.Guid,
                                TestString.Random(),
                                TestString.Random(),
-                               null,
                                user_DTO.Guid);
 
             await _dataAccess.ExecuteAsync(insertTicketRequest);
