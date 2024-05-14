@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace TicketMate.Persistence.DataRequestObjects.ProjectRequests
+﻿namespace TicketMate.Persistence.DataRequestObjects.ProjectRequests
 {
     public class UpdateProjectByGuid : IDataExecute
     {
@@ -14,7 +8,7 @@ namespace TicketMate.Persistence.DataRequestObjects.ProjectRequests
 
         public bool? IsActive { get; set; }
 
-        public UpdateProjectByGuid(Guid guid, string? name, bool? isActive) 
+        public UpdateProjectByGuid(Guid guid, string? name, bool? isActive)
         {
             Guid = guid;
 

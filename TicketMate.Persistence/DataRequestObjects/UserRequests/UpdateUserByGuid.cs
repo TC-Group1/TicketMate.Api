@@ -1,12 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace TicketMate.Persistence.DataRequestObjects.UserRequests
+﻿namespace TicketMate.Persistence.DataRequestObjects.UserRequests
 {
-    public class UpdateUserByGuid :  IDataExecute
+    public class UpdateUserByGuid : IDataExecute
     {
         public UpdateUserByGuid(Guid guid, string firstName, string lastName, string phoneNumber, string email, string avatar, int isActive, string passwordHash)
         {
