@@ -164,10 +164,12 @@ namespace TicketMate.Persistence.Tests.DataRequestTests.UserTests
                                         TestString.Random(MaxLength.Avatar),
                                         1,
                                         TestString.Random(MaxLength.PasswordHash));
+
             await _dataAccess.ExecuteAsync(updateRequest);
 
             var getUser = await _dataAccess.FetchAsync(new GetUserByGuid(guid));
 
+            Assert.NotNull(getUser);
             Assert.Equal(updateRequest.FirstName, getUser.FirstName);
             Assert.Equal(updateRequest.LastName, getUser.LastName);
             Assert.Equal(updateRequest.PhoneNumber, getUser.PhoneNumber);

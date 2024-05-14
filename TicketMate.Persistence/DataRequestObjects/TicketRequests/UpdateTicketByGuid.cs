@@ -18,14 +18,13 @@
         public string Description { get; set; } = string.Empty;
         public int? PriorityId { get; set; }
         public int? StatusId { get; set; }
-        public DateTime? LastModified { get; set; } = DateTime.UtcNow;
         public object? GetParameters() => this;
         public string GetSql() => $@"UPDATE {DatabaseTable.Tickets}  
                                            SET Title = COALESCE(@Title, Title),  
                                            DESCRIPTION = COALESCE(@Description, Description),
                                            PRIORITYID = COALESCE(@PriorityId, PriorityId), 
                                            STATUSID = COALESCE(@StatusId, StatusId), 
-                                           LASTMODIFIED = @LastModified
+                                           LASTMODIFIED = UTC_DATE()
                                            WHERE Guid = @guid";
     }
 }

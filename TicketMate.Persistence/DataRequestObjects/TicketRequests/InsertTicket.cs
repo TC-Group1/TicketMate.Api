@@ -28,7 +28,7 @@
         public string Title { get; set; } = string.Empty;
         public string Description { get; set; } = string.Empty;
         public int? PriorityId { get; set; }
-        public int StatusId { get; set; } = 1;
+        public int StatusId { get; set; }
         public DateTime DateCreated { get; set; } = DateTime.UtcNow;
         public Guid CreatedByUserGuid { get; set; }
         public DateTime? DateUpdated { get; set; } = null;

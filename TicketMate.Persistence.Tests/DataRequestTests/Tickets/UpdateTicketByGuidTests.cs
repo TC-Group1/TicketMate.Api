@@ -40,6 +40,41 @@ namespace TicketMate.Persistence.Tests.DataRequestTests.Tickets
         }
 
         [Fact]
+        public async Task UpdateTicketByGuid_IfUpdateSuccessful_ValuesAreUpdated()
+        {
+            var projects_DTO = await TestProject.InsertAndFetchProjectDtoAsync();
+
+            var user_DTO = await TestUser.InsertAndFetchUsersDtoAsync();
+
+            var ticketGuid = Guid.NewGuid();
+
+            var insertTicketRequest = new InsertTicket(ticketGuid,
+                               projects_DTO.Guid,
+                               TestString.Random(),
+                               TestString.Random(),
+                               null,
+                               user_DTO.Guid);
+
+            await _dataAccess.ExecuteAsync(insertTicketRequest);
+
+            var updateRequest = new UpdateTicketByGuid(ticketGuid, TestString.Random(), TestString.Random(), null, null);
+
+            await _dataAccess.ExecuteAsync(updateRequest);
+            var getTicket = await _dataAccess.FetchAsync(new GetTicketByGuid(ticketGuid));
+
+            Assert.NotNull(getTicket);
+            Assert.Equal(updateRequest.Title, getTicket.Title);
+            Assert.Equal(insertTicketRequest.StatusId, getTicket.StatusId);
+            Assert.Equal(insertTicketRequest.PriorityId, getTicket?.PriorityId);
+            Assert.Equal(updateRequest.Description, getTicket?.Description);
+
+            // Delete Inserted Results //
+            await _dataAccess.ExecuteAsync(new DeleteTicketByGuid(ticketGuid));
+            await _dataAccess.ExecuteAsync(new DeleteProjectByGuid(projects_DTO.Guid));
+            await _dataAccess.ExecuteAsync(new DeleteUserByGuid(user_DTO.Guid));
+        }
+
+        [Fact]
         public async Task UpdateTicketByGuid_IfTicketDoesNotExist_ShouldReturnZeroRowAffected()
         {
 
