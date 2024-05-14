@@ -27,7 +27,7 @@ namespace TicketMate.Persistence.Tests.DataRequestTests.Tickets
 
             await _dataAccess.ExecuteAsync(insertTicketRequest);
 
-            var updateRequest = new UpdateTicketByGuid(ticketGuid, TestString.Random(), TestString.Random(), 1, 1);
+            var updateRequest = new UpdateTicketByGuid(ticketGuid, TestString.Random(), TestString.Random(), null, null);
 
             var rowsAffected = await _dataAccess.ExecuteAsync(updateRequest);
 
@@ -37,6 +37,17 @@ namespace TicketMate.Persistence.Tests.DataRequestTests.Tickets
             await _dataAccess.ExecuteAsync(new DeleteTicketByGuid(ticketGuid));
             await _dataAccess.ExecuteAsync(new DeleteProjectByGuid(projects_DTO.Guid));
             await _dataAccess.ExecuteAsync(new DeleteUserByGuid(user_DTO.Guid));
+        }
+
+        [Fact]
+        public async Task UpdateTicketByGuid_IfTicketDoesNotExist_ShouldReturnZeroRowAffected()
+        {
+
+            var updateRequest = new UpdateTicketByGuid(Guid.NewGuid(), TestString.Random(), TestString.Random(), null, null);
+
+            var rowsAffected = await _dataAccess.ExecuteAsync(updateRequest);
+
+            Assert.Equal(0, rowsAffected);
         }
     }
 }
