@@ -1,4 +1,6 @@
 ﻿using Dapper;
+using MySql.Data.MySqlClient;
+using TicketMate.Domain.Exceptions;
 
 namespace TicketMate.Persistence.Implementation
 {
@@ -10,29 +12,50 @@ namespace TicketMate.Persistence.Implementation
 
         public async Task<int> ExecuteAsync(IDataExecute request)
         {
-            using var connection = _connectionFactory.NewConnection();
+            try
+            {
+                using var connection = _connectionFactory.NewConnection();
 
-            connection.Open();
+                connection.Open();
 
-            return await connection.ExecuteAsync(request.GetSql(), request.GetParameters());
+                return await connection.ExecuteAsync(request.GetSql(), request.GetParameters());
+            }
+            catch (MySqlException ex)
+            {
+                throw new DataAccessException(ex.Message, ex.Number, ex);
+            }
         }
 
         public async Task<TResponse?> FetchAsync<TResponse>(IDataFetch<TResponse> request)
         {
-            using var connection = _connectionFactory.NewConnection();
+            try
+            {
+                using var connection = _connectionFactory.NewConnection();
 
-            connection.Open();
+                connection.Open();
 
-            return await connection.QueryFirstOrDefaultAsync<TResponse>(request.GetSql(), request.GetParameters());
+                return await connection.QueryFirstOrDefaultAsync<TResponse>(request.GetSql(), request.GetParameters());
+            }
+            catch (MySqlException ex)
+            {
+                throw new DataAccessException(ex.Message, ex.Number, ex);
+            }
         }
 
         public async Task<IEnumerable<TResponse>> FetchListAsync<TResponse>(IDataFetch<TResponse> request)
         {
-            using var connection = _connectionFactory.NewConnection();
+            try
+            {
+                using var connection = _connectionFactory.NewConnection();
 
-            connection.Open();
+                connection.Open();
 
-            return await connection.QueryAsync<TResponse>(request.GetSql(), request.GetParameters());
+                return await connection.QueryAsync<TResponse>(request.GetSql(), request.GetParameters());
+            }
+            catch (MySqlException ex)
+            {
+                throw new DataAccessException(ex.Message, ex.Number, ex);
+            }
         }
     }
 }

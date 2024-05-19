@@ -5,7 +5,7 @@
     /// </summary>
     public class StringLengthLimitRule : ValidationRule<string>
     {
-        public StringLengthLimitRule(string objectToValidate, string nameOfObjectToValidate, int maxLength, bool isRequiredString = true) : base(objectToValidate, nameOfObjectToValidate)
+        public StringLengthLimitRule(string? objectToValidate, string nameOfObjectToValidate, int maxLength, bool isRequiredString = true) : base(objectToValidate, nameOfObjectToValidate)
         {
             _maxLength = maxLength;
             _isRequiredString = isRequiredString;
