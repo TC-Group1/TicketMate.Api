@@ -1,15 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using TicketMate.Application.Requests.UserRequests.UpdateByGuid;
+﻿using TicketMate.Application.Requests.UserRequests.UpdateByGuid;
 using TicketMate.Domain.Constants;
-using TicketMate.Domain.Exceptions;
-using TicketMate.Persistence.Abstraction;
-using TicketMate.Persistence.DataRequestObjects.UserRequests;
-using TicketMate.Persistence.Tests.DataRequestTests;
-using TicketMate.Persistence.Tests.DataRequestTests.Helpers;
+using TicketMate.Tests.Shared.Helpers;
 
 namespace TicketMate.Application.Tests.RequestTests.UserRequestTests.UpdateUserByGuidTests
 {
