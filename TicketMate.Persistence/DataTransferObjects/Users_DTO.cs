@@ -12,7 +12,7 @@ namespace TicketMate.Persistence.DataTransferObjects
         public string Email { get; set; } = string.Empty;
         public string Avatar { get; set; } = string.Empty;
         public string PasswordHash { get; set; } = string.Empty;
-        public int IsActive { get; set; }
+        public bool IsActive { get; set; }
 
         public User AsDomainUser() => new(Guid, PhoneNumber, FirstName, LastName, Email, Avatar, PasswordHash, IsActive);
     }

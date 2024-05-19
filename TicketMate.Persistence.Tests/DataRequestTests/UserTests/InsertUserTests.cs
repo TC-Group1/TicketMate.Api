@@ -18,7 +18,7 @@ namespace TicketMate.Persistence.Tests.DataRequestTests.UserTests
                                         TestString.Random(15),
                                         TestString.Random(),
                                         TestString.Random(),
-                                        1,
+                                        true,
                                         TestString.Random());
 
             var rowsAffected = await _dataAccess.ExecuteAsync(request);
@@ -41,7 +41,7 @@ namespace TicketMate.Persistence.Tests.DataRequestTests.UserTests
                                         TestString.Random(15),
                                         TestString.Random(),
                                         TestString.Random(),
-                                        1,
+                                        true,
                                         TestString.Random()));
 
             // Create request with guid that was just inserted
@@ -51,7 +51,7 @@ namespace TicketMate.Persistence.Tests.DataRequestTests.UserTests
                                         TestString.Random(15),
                                         TestString.Random(),
                                         TestString.Random(),
-                                        1,
+                                        true,
                                         TestString.Random());
 
             // assert that request throws MySqlException
@@ -72,8 +72,8 @@ namespace TicketMate.Persistence.Tests.DataRequestTests.UserTests
             var phoneNumber = TestString.Random(15);
 
 
-            var requestOne = new InsertUser(Guid.NewGuid(), firstName, lastName, phoneNumber, email, avatar, 1, "pwHash");
-            var requestWithSameUsername = new InsertUser(Guid.NewGuid(), firstName, lastName, phoneNumber, email, avatar, 1, "pwHash");
+            var requestOne = new InsertUser(Guid.NewGuid(), firstName, lastName, phoneNumber, email, avatar, true, "pwHash");
+            var requestWithSameUsername = new InsertUser(Guid.NewGuid(), firstName, lastName, phoneNumber, email, avatar, true, "pwHash");
 
             // insert requestOne so that username is already taken
             await _dataAccess.ExecuteAsync(requestOne);

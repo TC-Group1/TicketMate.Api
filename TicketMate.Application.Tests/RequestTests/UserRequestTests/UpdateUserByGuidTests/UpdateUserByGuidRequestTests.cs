@@ -18,7 +18,7 @@ namespace TicketMate.Application.Tests.RequestTests.UserRequestTests.UpdateUserB
                                         TestString.Random(14),
                                         TestString.Random(),
                                         TestString.Random(),
-                                        1,
+                                        true,
                                         TestString.Random());
             var isValid = request.IsValid(out _);
 
@@ -36,7 +36,7 @@ namespace TicketMate.Application.Tests.RequestTests.UserRequestTests.UpdateUserB
                 TestString.Random(14),
                 TestString.Random(),
                 TestString.Random(),
-                1,
+                true,
                 TestString.Random());
 
             var isValid = request.IsValid(out _);
@@ -55,7 +55,7 @@ namespace TicketMate.Application.Tests.RequestTests.UserRequestTests.UpdateUserB
                     TestString.Random(MaxLength.PhoneNumber),
                     TestString.Random(MaxLength.Email),
                     TestString.Random(MaxLength.Avatar),
-                    1,
+                    true,
                     TestString.Random(MaxLength.PasswordHash))
             },
             new object[]
@@ -67,7 +67,7 @@ namespace TicketMate.Application.Tests.RequestTests.UserRequestTests.UpdateUserB
                     TestString.Random(MaxLength.PhoneNumber),
                     TestString.Random(MaxLength.Email),
                     TestString.Random(MaxLength.Avatar),
-                    1,
+                    true,
                     TestString.Random(MaxLength.PasswordHash))
             },
             new object[]
@@ -79,7 +79,7 @@ namespace TicketMate.Application.Tests.RequestTests.UserRequestTests.UpdateUserB
                     TestString.Random(MaxLength.PhoneNumber + 1),
                     TestString.Random(MaxLength.Email),
                     TestString.Random(MaxLength.Avatar),
-                    1,
+                    true,
                     TestString.Random(MaxLength.PasswordHash))
             },
             new object[]
@@ -91,7 +91,7 @@ namespace TicketMate.Application.Tests.RequestTests.UserRequestTests.UpdateUserB
                     TestString.Random(MaxLength.PhoneNumber),
                     TestString.Random(MaxLength.Email + 1),
                     TestString.Random(MaxLength.Avatar),
-                    1,
+                    true,
                     TestString.Random(MaxLength.PasswordHash))
             },
               new object[]
@@ -103,7 +103,7 @@ namespace TicketMate.Application.Tests.RequestTests.UserRequestTests.UpdateUserB
                     TestString.Random(MaxLength.PhoneNumber),
                     TestString.Random(MaxLength.Email),
                     TestString.Random(MaxLength.Avatar + 1),
-                    1,
+                    true,
                     TestString.Random(MaxLength.PasswordHash))
             },
                 new object[]
@@ -115,7 +115,7 @@ namespace TicketMate.Application.Tests.RequestTests.UserRequestTests.UpdateUserB
                     TestString.Random(MaxLength.PhoneNumber),
                     TestString.Random(MaxLength.Email),
                     TestString.Random(MaxLength.Avatar),
-                    1,
+                    true,
                     TestString.Random(MaxLength.PasswordHash + 1))
             }
         };

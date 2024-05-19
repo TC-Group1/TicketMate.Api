@@ -17,7 +17,7 @@ namespace TicketMate.Application.Requests.UserRequests.UpdateByGuid
         {
                 
         }
-        public UpdateUserByGuidRequest(Guid guid, string? firstName, string? lastName, string? phoneNumber, string? email, string? avatar, int? isActive, string? passwordHash) 
+        public UpdateUserByGuidRequest(Guid guid, string? firstName, string? lastName, string? phoneNumber, string? email, string? avatar, bool? isActive, string? passwordHash) 
         {
             Guid = guid;
             FirstName = firstName;
@@ -37,7 +37,7 @@ namespace TicketMate.Application.Requests.UserRequests.UpdateByGuid
         public string? PhoneNumber { get; set; } 
         public string? Email { get; set; } 
         public string? Avatar { get; set; } 
-        public int? IsActive { get; set; }
+        public bool? IsActive { get; set; }
         public string? PasswordHash { get; set; } 
 
         #endregion

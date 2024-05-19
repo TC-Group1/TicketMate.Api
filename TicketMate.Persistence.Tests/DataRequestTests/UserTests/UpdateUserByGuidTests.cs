@@ -20,7 +20,7 @@ namespace TicketMate.Persistence.Tests.DataRequestTests.UserTests
                                         TestString.Random(15),
                                         TestString.Random(),
                                         TestString.Random(),
-                                        1,
+                                        true,
                                         TestString.Random());
             await _dataAccess.ExecuteAsync(createTestUser);
 
@@ -31,7 +31,7 @@ namespace TicketMate.Persistence.Tests.DataRequestTests.UserTests
                                         TestString.Random(14),
                                         TestString.Random(),
                                         TestString.Random(),
-                                        1,
+                                        true,
                                         TestString.Random());
 
             var rowsAffected = await _dataAccess.ExecuteAsync(updateRequest);
@@ -53,7 +53,7 @@ namespace TicketMate.Persistence.Tests.DataRequestTests.UserTests
                     TestString.Random(MaxLength.PhoneNumber),
                     TestString.Random(MaxLength.Email),
                     TestString.Random(MaxLength.Avatar),
-                    1,
+                    true,
                     TestString.Random(MaxLength.PasswordHash))
             },
             new object[]
@@ -65,7 +65,7 @@ namespace TicketMate.Persistence.Tests.DataRequestTests.UserTests
                     TestString.Random(MaxLength.PhoneNumber),
                     TestString.Random(MaxLength.Email),
                     TestString.Random(MaxLength.Avatar),
-                    1,
+                    true,
                     TestString.Random(MaxLength.PasswordHash))
             },
             new object[]
@@ -77,7 +77,7 @@ namespace TicketMate.Persistence.Tests.DataRequestTests.UserTests
                     TestString.Random(MaxLength.PhoneNumber + 1),
                     TestString.Random(MaxLength.Email),
                     TestString.Random(MaxLength.Avatar),
-                    1,
+                    true,
                     TestString.Random(MaxLength.PasswordHash))
             },
             new object[]
@@ -89,7 +89,7 @@ namespace TicketMate.Persistence.Tests.DataRequestTests.UserTests
                     TestString.Random(MaxLength.PhoneNumber),
                     TestString.Random(MaxLength.Email + 1),
                     TestString.Random(MaxLength.Avatar),
-                    1,
+                    true,
                     TestString.Random(MaxLength.PasswordHash))
             },
               new object[]
@@ -101,7 +101,7 @@ namespace TicketMate.Persistence.Tests.DataRequestTests.UserTests
                     TestString.Random(MaxLength.PhoneNumber),
                     TestString.Random(MaxLength.Email),
                     TestString.Random(MaxLength.Avatar + 1),
-                    1,
+                    true,
                     TestString.Random(MaxLength.PasswordHash))
             },
                 new object[]
@@ -113,7 +113,7 @@ namespace TicketMate.Persistence.Tests.DataRequestTests.UserTests
                     TestString.Random(MaxLength.PhoneNumber),
                     TestString.Random(MaxLength.Email),
                     TestString.Random(MaxLength.Avatar),
-                    1,
+                    true,
                     TestString.Random(MaxLength.PasswordHash + 1))
             }
         };
@@ -129,7 +129,7 @@ namespace TicketMate.Persistence.Tests.DataRequestTests.UserTests
                                         TestString.Random(MaxLength.PhoneNumber),
                                         TestString.Random(MaxLength.Email),
                                         TestString.Random(MaxLength.Avatar),
-                                        1,
+                                        true,
                                         TestString.Random(MaxLength.PasswordHash));
 
             await _dataAccess.ExecuteAsync(createTestUser);
@@ -153,7 +153,7 @@ namespace TicketMate.Persistence.Tests.DataRequestTests.UserTests
                                         TestString.Random(7),
                                         TestString.Random(MaxLength.Email),
                                         TestString.Random(MaxLength.Avatar),
-                                        1,
+                                        true,
                                         TestString.Random(MaxLength.PasswordHash));
 
             await _dataAccess.ExecuteAsync(testUser);
@@ -165,7 +165,7 @@ namespace TicketMate.Persistence.Tests.DataRequestTests.UserTests
                                         TestString.Random(14),
                                         TestString.Random(MaxLength.Email),
                                         TestString.Random(MaxLength.Avatar),
-                                        1,
+                                        true,
                                         TestString.Random(MaxLength.PasswordHash));
             await _dataAccess.ExecuteAsync(updateRequest);
 
@@ -194,7 +194,7 @@ namespace TicketMate.Persistence.Tests.DataRequestTests.UserTests
                                                 TestString.Random(MaxLength.PhoneNumber),
                                                 TestString.Random(MaxLength.Email),
                                                 TestString.Random(MaxLength.Avatar),
-                                                1,
+                                                true,
                                                 TestString.Random(MaxLength.PasswordHash));
 
             var rowsAffected = await _dataAccess.ExecuteAsync(userNotHere);
