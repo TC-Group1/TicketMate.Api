@@ -1,6 +1,7 @@
 ﻿using TicketMate.Persistence.DataRequestObjects.TicketRequests;
 using TicketMate.Tests.Shared.Helpers;
 using TicketMate.Tests.Shared.Projects;
+using TicketMate.Tests.Shared.Tickets;
 using TicketMate.Tests.Shared.Users;
 
 namespace TicketMate.Persistence.Tests.DataRequestTests.Tickets
@@ -22,12 +23,8 @@ namespace TicketMate.Persistence.Tests.DataRequestTests.Tickets
 
             var ticketGuid = Guid.NewGuid();
 
-            // Insert Ticket to Delete //
-            await _dataAccess.ExecuteAsync(new InsertTicket(ticketGuid,
-                               projects_DTO.Guid,
-                               TestString.Random(),
-                               TestString.Random(),
-                               user_DTO.Guid));
+            await TestTicket.InsertTicketAsync(
+                ticketGuid: ticketGuid, projectGuid: projects_DTO.Guid, userGuid: user_DTO.Guid);
 
             // Get Ticket by Guid to Ensure it was Inserted //
             var ticketBeforeDeleting = await _dataAccess.FetchAsync(new GetTicketByGuid(ticketGuid));

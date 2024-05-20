@@ -4,6 +4,7 @@ using TicketMate.Persistence.DataRequestObjects.TicketRequests;
 using TicketMate.Persistence.DataRequestObjects.UserRequests;
 using TicketMate.Tests.Shared.Helpers;
 using TicketMate.Tests.Shared.Projects;
+using TicketMate.Tests.Shared.Tickets;
 using TicketMate.Tests.Shared.Users;
 
 namespace TicketMate.Persistence.Tests.DataRequestTests.Tickets
@@ -47,11 +48,8 @@ namespace TicketMate.Persistence.Tests.DataRequestTests.Tickets
 
             var ticketGuid = Guid.NewGuid();
 
-            await _dataAccess.ExecuteAsync(new InsertTicket(ticketGuid,
-                               projects_DTO.Guid,
-                               TestString.Random(),
-                               TestString.Random(),
-                               user_DTO.Guid));
+            await TestTicket.InsertTicketAsync(
+                ticketGuid: ticketGuid, projectGuid: projects_DTO.Guid, userGuid: user_DTO.Guid);
 
             // Create request with guid that was just inserted
             var request = new InsertTicket(ticketGuid,
