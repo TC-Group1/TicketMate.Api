@@ -1,4 +1,5 @@
 ﻿using MySql.Data.MySqlClient;
+using TicketMate.Domain.Exceptions;
 using TicketMate.Persistence.DataRequestObjects.RolesRequests;
 using TicketMate.Tests.Shared.Helpers;
 
@@ -31,7 +32,7 @@ namespace TicketMate.Persistence.Tests.DataRequestTests.RoleTests
 
             var exception = await Record.ExceptionAsync(async () => await _dataAccess.ExecuteAsync(request));
 
-            Assert.IsType<MySqlException>(exception);
+            Assert.IsType<DataAccessException>(exception);
 
             await _dataAccess.ExecuteAsync(new DeleteRoleByName(roleName));
         }

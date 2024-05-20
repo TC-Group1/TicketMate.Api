@@ -1,17 +1,23 @@
-﻿using TicketMate.Domain.Constants;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using TicketMate.Domain.Constants;
 using TicketMate.Domain.Validation.GuidValidation;
 using TicketMate.Domain.Validation.StringValidation;
 
-namespace TicketMate.Application.Requests.UserRequests.Insert
+namespace TicketMate.Application.Requests.UserRequests.UpdateByGuid
 {
-    public class InsertUserRequest : IValidatable, IRequest
+    public class UpdateUserByGuidRequest : IValidatable, IRequest
     {
         #region Constructor
-        public InsertUserRequest()
+
+        public UpdateUserByGuidRequest()
         {
-            
+                
         }
-        public InsertUserRequest(Guid guid, string firstName, string lastName, string phoneNumber, string email, string avatar, int isActive, string passwordHash)
+        public UpdateUserByGuidRequest(Guid guid, string? firstName, string? lastName, string? phoneNumber, string? email, string? avatar, int? isActive, string? passwordHash) 
         {
             Guid = guid;
             FirstName = firstName;
@@ -22,24 +28,21 @@ namespace TicketMate.Application.Requests.UserRequests.Insert
             IsActive = isActive;
             PasswordHash = passwordHash;
         }
-
         #endregion
 
         #region Public Properties
-
         public Guid Guid { get; set; }
-        public string FirstName { get; set; } = null!;
-        public string LastName { get; set; } = null!;
-        public string PhoneNumber { get; set; } = null!;
-        public string Email { get; set; } = null!;
-        public string? Avatar { get; set; }
-        public int IsActive { get; set; }
-        public string PasswordHash { get; set; } = null!;
+        public string? FirstName { get; set; } 
+        public string? LastName { get; set; } 
+        public string? PhoneNumber { get; set; } 
+        public string? Email { get; set; } 
+        public string? Avatar { get; set; } 
+        public int? IsActive { get; set; }
+        public string? PasswordHash { get; set; } 
 
         #endregion
 
         #region IValidatable Validation
-
         public bool IsValid(out Validator validator)
         {
             validator = new(
@@ -50,8 +53,7 @@ namespace TicketMate.Application.Requests.UserRequests.Insert
                 new StringLengthLimitRule(Email, nameof(Email), MaxLength.Email),
                 new StringLengthLimitRule(Avatar, nameof(Avatar), MaxLength.Avatar, isRequiredString : false),
                 new StringLengthLimitRule(PasswordHash, nameof(PasswordHash), MaxLength.PasswordHash)
-                ); 
-
+                );
             return validator.IsPassingAllRules;
         }
 
