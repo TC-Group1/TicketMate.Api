@@ -22,7 +22,7 @@ namespace TicketMate.Persistence.Tests.DataRequestTests.UserRoleTests
                                         TestString.Random(15),
                                         TestString.Random(),
                                         TestString.Random(),
-                                        1,
+                                        true,
                                         TestString.Random());
 
             await _dataAccess.ExecuteAsync(insertUserRequest);
@@ -90,7 +90,7 @@ namespace TicketMate.Persistence.Tests.DataRequestTests.UserRoleTests
                                         TestString.Random(15),
                                         TestString.Random(),
                                         TestString.Random(),
-                                        1,
+                                        true,
                                         TestString.Random());
 
             await _dataAccess.ExecuteAsync(insertUserRequest);
