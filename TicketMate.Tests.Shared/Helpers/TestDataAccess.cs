@@ -1,7 +1,6 @@
 ﻿using System.Diagnostics.CodeAnalysis;
 using TicketMate.Persistence.Abstraction;
 using TicketMate.Persistence.Implementation;
-using TicketMate.Persistence.Tests;
 
 namespace TicketMate.Tests.Shared.Helpers
 {
