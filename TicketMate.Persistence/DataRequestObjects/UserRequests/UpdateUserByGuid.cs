@@ -2,7 +2,7 @@
 {
     public class UpdateUserByGuid : IDataExecute
     {
-        public UpdateUserByGuid(Guid guid, string? firstName, string? lastName, string? phoneNumber, string? email, string? avatar, int? isActive, string? passwordHash)
+        public UpdateUserByGuid(Guid guid, string? firstName, string? lastName, string? phoneNumber, string? email, string? avatar, bool? isActive, string? passwordHash)
         {
             Guid = guid;
             FirstName = firstName;
@@ -22,13 +22,13 @@
 
         public string? Avatar { get; set; }
 
-        public string FirstName { get; set; }
+        public string? FirstName { get; set; }
 
         public string? LastName { get; set; }
 
         public string? PhoneNumber { get; set; }
 
-        public int? IsActive { get; set; }
+        public bool? IsActive { get; set; }
 
         public object? GetParameters() => this;
 

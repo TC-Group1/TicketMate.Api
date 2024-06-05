@@ -23,7 +23,7 @@ namespace TicketMate.Persistence.Tests.DataRequestTests.UserTests
                                         TestString.Random(15),
                                         TestString.Random(),
                                         TestString.Random(),
-                                        1,
+                                        true,
                                         TestString.Random()));
 
             // get user by guid to ensure it was inserted

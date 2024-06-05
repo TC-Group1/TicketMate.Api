@@ -11,7 +11,7 @@ namespace TicketMate.Application.Requests.UserRequests.Insert
         {
             
         }
-        public InsertUserRequest(Guid guid, string firstName, string lastName, string phoneNumber, string email, string avatar, int isActive, string passwordHash)
+        public InsertUserRequest(Guid guid, string firstName, string lastName, string phoneNumber, string email, string avatar, bool isActive, string passwordHash)
         {
             Guid = guid;
             FirstName = firstName;
@@ -33,7 +33,7 @@ namespace TicketMate.Application.Requests.UserRequests.Insert
         public string PhoneNumber { get; set; } = null!;
         public string Email { get; set; } = null!;
         public string? Avatar { get; set; }
-        public int IsActive { get; set; }
+        public bool IsActive { get; set; }
         public string PasswordHash { get; set; } = null!;
 
         #endregion
