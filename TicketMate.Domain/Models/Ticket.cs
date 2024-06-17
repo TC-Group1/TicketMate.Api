@@ -5,30 +5,30 @@
         public Ticket() { }
 
         public Ticket(
-            Guid guid,
-            Guid projectGuid, 
+            Guid guid, 
             string title,
             string description,
-            string priorityId,
-            string statusId,
-            Guid createdByUserId)
+            DateTime dateCreated,
+            DateTime? lastModified,
+            int? priorityId = null,
+            int statusId = 1)
         {
             Guid = guid;
-            ProjectGuid = projectGuid;
             Title = title;
             Description = description;
+            DateCreated = dateCreated;
+            LastModified = lastModified;
             Priority = priorityId;
             Status = statusId;
-            CreatedByUserId = createdByUserId;
         }
         public Guid Guid { get; set; }
         public Guid ProjectGuid { get; set; }
         public string Title { get; set; } = string.Empty;
         public string Description { get; set; } = string.Empty;
-        public string Priority { get; set; } = string.Empty;
-        public string Status { get; set; } = string.Empty;
+        public int? Priority { get; set; }
+        public int Status { get; set; }
         public DateTime DateCreated { get; set; }
         public Guid CreatedByUserId { get; set; }
-        public DateTime DateUpdated { get; set; }
+        public DateTime? LastModified { get; set; }
     }
 }
