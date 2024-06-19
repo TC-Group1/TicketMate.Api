@@ -9,6 +9,13 @@ namespace TicketMate.Application.Requests.ProjectRequests.DeleteByGuid
 
         public async override Task ExecuteRequestAsync(DeleteProjectByGuidRequest request)
         {
+            var projectDTO = await _dataAccess.FetchAsync(new GetProjectByGuid(request.Guid));
+
+            if (projectDTO == null)
+            {
+                throw new DoesNotExistException(nameof(Project), (request.Guid, nameof(request.Guid)));
+            }
+            
             var rowsAffected = await _dataAccess.ExecuteAsync(new DeleteProjectByGuid(request.Guid));
 
             if (rowsAffected <= 0)
