@@ -1,5 +1,6 @@
 ﻿using MySql.Data.MySqlClient;
 using TicketMate.Domain.Constants;
+using TicketMate.Domain.Exceptions;
 using TicketMate.Persistence.DataRequestObjects.UserRequests;
 using TicketMate.Tests.Shared.Helpers;
 
@@ -19,7 +20,7 @@ namespace TicketMate.Persistence.Tests.DataRequestTests.UserTests
                                         TestString.Random(15),
                                         TestString.Random(),
                                         TestString.Random(),
-                                        1,
+                                        true,
                                         TestString.Random());
             await _dataAccess.ExecuteAsync(createTestUser);
 
@@ -30,7 +31,7 @@ namespace TicketMate.Persistence.Tests.DataRequestTests.UserTests
                                         TestString.Random(14),
                                         TestString.Random(),
                                         TestString.Random(),
-                                        1,
+                                        true,
                                         TestString.Random());
 
             var rowsAffected = await _dataAccess.ExecuteAsync(updateRequest);
@@ -52,7 +53,7 @@ namespace TicketMate.Persistence.Tests.DataRequestTests.UserTests
                     TestString.Random(MaxLength.PhoneNumber),
                     TestString.Random(MaxLength.Email),
                     TestString.Random(MaxLength.Avatar),
-                    1,
+                    true,
                     TestString.Random(MaxLength.PasswordHash))
             },
             new object[]
@@ -64,7 +65,7 @@ namespace TicketMate.Persistence.Tests.DataRequestTests.UserTests
                     TestString.Random(MaxLength.PhoneNumber),
                     TestString.Random(MaxLength.Email),
                     TestString.Random(MaxLength.Avatar),
-                    1,
+                    true,
                     TestString.Random(MaxLength.PasswordHash))
             },
             new object[]
@@ -76,7 +77,7 @@ namespace TicketMate.Persistence.Tests.DataRequestTests.UserTests
                     TestString.Random(MaxLength.PhoneNumber + 1),
                     TestString.Random(MaxLength.Email),
                     TestString.Random(MaxLength.Avatar),
-                    1,
+                    true,
                     TestString.Random(MaxLength.PasswordHash))
             },
             new object[]
@@ -88,7 +89,7 @@ namespace TicketMate.Persistence.Tests.DataRequestTests.UserTests
                     TestString.Random(MaxLength.PhoneNumber),
                     TestString.Random(MaxLength.Email + 1),
                     TestString.Random(MaxLength.Avatar),
-                    1,
+                    true,
                     TestString.Random(MaxLength.PasswordHash))
             },
               new object[]
@@ -100,7 +101,7 @@ namespace TicketMate.Persistence.Tests.DataRequestTests.UserTests
                     TestString.Random(MaxLength.PhoneNumber),
                     TestString.Random(MaxLength.Email),
                     TestString.Random(MaxLength.Avatar + 1),
-                    1,
+                    true,
                     TestString.Random(MaxLength.PasswordHash))
             },
                 new object[]
@@ -112,14 +113,14 @@ namespace TicketMate.Persistence.Tests.DataRequestTests.UserTests
                     TestString.Random(MaxLength.PhoneNumber),
                     TestString.Random(MaxLength.Email),
                     TestString.Random(MaxLength.Avatar),
-                    1,
+                    true,
                     TestString.Random(MaxLength.PasswordHash + 1))
             }
         };
 
         [Theory]
         [MemberData(nameof(UpdateRequestExceedingMaxLength))]
-        public async Task UpdateUserByGuid_IfFieldExceedingMaxLength_ShouldThrow_MySqlException(UpdateUserByGuid invalidUpdateRequest)
+        public async Task UpdateUserByGuid_IfFieldExceedingMaxLength_ShouldThrow_DataAccessException(UpdateUserByGuid invalidUpdateRequest)
         {
             var createTestUser = new InsertUser(
                                         invalidUpdateRequest.Guid,
@@ -128,12 +129,14 @@ namespace TicketMate.Persistence.Tests.DataRequestTests.UserTests
                                         TestString.Random(MaxLength.PhoneNumber),
                                         TestString.Random(MaxLength.Email),
                                         TestString.Random(MaxLength.Avatar),
-                                        1,
+                                        true,
                                         TestString.Random(MaxLength.PasswordHash));
 
             await _dataAccess.ExecuteAsync(createTestUser);
 
-            await Assert.ThrowsAsync<MySqlException>(async () => await _dataAccess.ExecuteAsync(invalidUpdateRequest));
+            var exception = await Record.ExceptionAsync(async () => await _dataAccess.ExecuteAsync(invalidUpdateRequest));
+
+            Assert.IsType<DataAccessException>(exception);
 
             await _dataAccess.ExecuteAsync(new DeleteUserByGuid(invalidUpdateRequest.Guid));
         }
@@ -150,7 +153,7 @@ namespace TicketMate.Persistence.Tests.DataRequestTests.UserTests
                                         TestString.Random(7),
                                         TestString.Random(MaxLength.Email),
                                         TestString.Random(MaxLength.Avatar),
-                                        1,
+                                        true,
                                         TestString.Random(MaxLength.PasswordHash));
 
             await _dataAccess.ExecuteAsync(testUser);
@@ -162,12 +165,14 @@ namespace TicketMate.Persistence.Tests.DataRequestTests.UserTests
                                         TestString.Random(14),
                                         TestString.Random(MaxLength.Email),
                                         TestString.Random(MaxLength.Avatar),
-                                        1,
+                                        true,
                                         TestString.Random(MaxLength.PasswordHash));
+
             await _dataAccess.ExecuteAsync(updateRequest);
 
             var getUser = await _dataAccess.FetchAsync(new GetUserByGuid(guid));
 
+            Assert.NotNull(getUser);
             Assert.Equal(updateRequest.FirstName, getUser.FirstName);
             Assert.Equal(updateRequest.LastName, getUser.LastName);
             Assert.Equal(updateRequest.PhoneNumber, getUser.PhoneNumber);
@@ -191,7 +196,7 @@ namespace TicketMate.Persistence.Tests.DataRequestTests.UserTests
                                                 TestString.Random(MaxLength.PhoneNumber),
                                                 TestString.Random(MaxLength.Email),
                                                 TestString.Random(MaxLength.Avatar),
-                                                1,
+                                                true,
                                                 TestString.Random(MaxLength.PasswordHash));
 
             var rowsAffected = await _dataAccess.ExecuteAsync(userNotHere);

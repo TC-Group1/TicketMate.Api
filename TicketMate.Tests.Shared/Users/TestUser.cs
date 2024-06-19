@@ -24,7 +24,7 @@ namespace TicketMate.Tests.Shared.Users
                                         TestString.Random(15),
                                         TestString.Random(),
                                         TestString.Random(),
-                                        1,
+                                        true,
                                         TestString.Random());
 
             await _dataAccess.ExecuteAsync(insertUserRequest);

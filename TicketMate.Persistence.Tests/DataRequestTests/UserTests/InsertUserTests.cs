@@ -1,4 +1,5 @@
 ﻿using MySql.Data.MySqlClient;
+using TicketMate.Domain.Exceptions;
 using TicketMate.Persistence.DataRequestObjects.UserRequests;
 using TicketMate.Tests.Shared.Helpers;
 
@@ -17,7 +18,7 @@ namespace TicketMate.Persistence.Tests.DataRequestTests.UserTests
                                         TestString.Random(15),
                                         TestString.Random(),
                                         TestString.Random(),
-                                        1,
+                                        true,
                                         TestString.Random());
 
             var rowsAffected = await _dataAccess.ExecuteAsync(request);
@@ -29,7 +30,7 @@ namespace TicketMate.Persistence.Tests.DataRequestTests.UserTests
         }
 
         [Fact]
-        public async Task InsertUser_Given_GuidAlreadyTaken_ShouldThrow_MySqlException()
+        public async Task InsertUser_Given_GuidAlreadyTaken_ShouldThrow_DataAccessException()
         {
             var guid = Guid.NewGuid();
 
@@ -40,7 +41,7 @@ namespace TicketMate.Persistence.Tests.DataRequestTests.UserTests
                                         TestString.Random(15),
                                         TestString.Random(),
                                         TestString.Random(),
-                                        1,
+                                        true,
                                         TestString.Random()));
 
             // Create request with guid that was just inserted
@@ -50,13 +51,13 @@ namespace TicketMate.Persistence.Tests.DataRequestTests.UserTests
                                         TestString.Random(15),
                                         TestString.Random(),
                                         TestString.Random(),
-                                        1,
+                                        true,
                                         TestString.Random());
 
             // assert that request throws MySqlException
             var exception = await Record.ExceptionAsync(async () => await _dataAccess.ExecuteAsync(request));
 
-            Assert.IsType<MySqlException>(exception);
+            Assert.IsType<DataAccessException>(exception);
 
             await _dataAccess.ExecuteAsync(new DeleteUserByGuid(request.Guid));
         }
@@ -71,14 +72,14 @@ namespace TicketMate.Persistence.Tests.DataRequestTests.UserTests
             var phoneNumber = TestString.Random(15);
 
 
-            var requestOne = new InsertUser(Guid.NewGuid(), firstName, lastName, phoneNumber, email, avatar, 1, "pwHash");
-            var requestWithSameUsername = new InsertUser(Guid.NewGuid(), firstName, lastName, phoneNumber, email, avatar, 1, "pwHash");
+            var requestOne = new InsertUser(Guid.NewGuid(), firstName, lastName, phoneNumber, email, avatar, true, "pwHash");
+            var requestWithSameUsername = new InsertUser(Guid.NewGuid(), firstName, lastName, phoneNumber, email, avatar, true, "pwHash");
 
             // insert requestOne so that username is already taken
             await _dataAccess.ExecuteAsync(requestOne);
 
             // assert that requestWithSameUsername throws MySqlException
-            await Assert.ThrowsAsync<MySqlException>(async () => await _dataAccess.ExecuteAsync(requestWithSameUsername));
+            await Assert.ThrowsAsync<DataAccessException>(async () => await _dataAccess.ExecuteAsync(requestWithSameUsername));
 
             await _dataAccess.ExecuteAsync(new DeleteUserByGuid(requestOne.Guid));
         }

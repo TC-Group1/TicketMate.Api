@@ -4,7 +4,7 @@
     {
         public User() { }
 
-        public User(Guid guid, string phoneNumber, string firstName,string lastName, string email, string avatar, string passwordHash, int isActive)
+        public User(Guid guid, string phoneNumber, string firstName,string lastName, string email, string avatar, string passwordHash, bool isActive)
         {
             Guid = guid;
             PhoneNumber = phoneNumber;
@@ -23,6 +23,6 @@
         public string Email { get; set; } = string.Empty;
         public string Avatar { get; set; } = string.Empty;
         public string PasswordHash { get; set; } = string.Empty;
-        public int IsActive { get; set; }
+        public bool IsActive { get; set; }
     }
 }

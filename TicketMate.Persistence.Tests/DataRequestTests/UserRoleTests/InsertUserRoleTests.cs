@@ -1,4 +1,5 @@
 ﻿using MySql.Data.MySqlClient;
+using TicketMate.Domain.Exceptions;
 using TicketMate.Persistence.DataRequestObjects.RolesRequests;
 using TicketMate.Persistence.DataRequestObjects.UserRequests;
 using TicketMate.Persistence.DataRequestObjects.UserRolesRequests;
@@ -21,7 +22,7 @@ namespace TicketMate.Persistence.Tests.DataRequestTests.UserRoleTests
                                         TestString.Random(15),
                                         TestString.Random(),
                                         TestString.Random(),
-                                        1,
+                                        true,
                                         TestString.Random());
 
             await _dataAccess.ExecuteAsync(insertUserRequest);
@@ -69,7 +70,7 @@ namespace TicketMate.Persistence.Tests.DataRequestTests.UserRoleTests
             // assert that request throws MySqlException
             var exception = await Record.ExceptionAsync(async () => await _dataAccess.ExecuteAsync(request));
 
-            Assert.IsType<MySqlException>(exception);
+            Assert.IsType<DataAccessException>(exception);
 
             // Delete Inserted records
             await _dataAccess.ExecuteAsync(new DeleteRoleByName(roleName));
@@ -89,7 +90,7 @@ namespace TicketMate.Persistence.Tests.DataRequestTests.UserRoleTests
                                         TestString.Random(15),
                                         TestString.Random(),
                                         TestString.Random(),
-                                        1,
+                                        true,
                                         TestString.Random());
 
             await _dataAccess.ExecuteAsync(insertUserRequest);
@@ -104,7 +105,7 @@ namespace TicketMate.Persistence.Tests.DataRequestTests.UserRoleTests
             // assert that request throws MySqlException
             var exception = await Record.ExceptionAsync(async () => await _dataAccess.ExecuteAsync(request));
 
-            Assert.IsType<MySqlException>(exception);
+            Assert.IsType<DataAccessException>(exception);
 
             // Delete Inserted records
             await _dataAccess.ExecuteAsync(new DeleteUserByGuid(guid));

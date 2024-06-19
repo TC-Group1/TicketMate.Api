@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using TicketMate.Domain.Exceptions;
 using TicketMate.Persistence.DataRequestObjects.ProjectRequests;
 
 namespace TicketMate.Persistence.Tests.DataRequestTests.ProjectTests
@@ -42,8 +43,8 @@ namespace TicketMate.Persistence.Tests.DataRequestTests.ProjectTests
             // storing the exception when we run that request
             var exception = await Record.ExceptionAsync(async () => await _dataAccess.ExecuteAsync(request));
 
-            // asserting that the exception is in fact a mysql exception
-            Assert.IsType<MySqlException>(exception);
+            // asserting that the exception is excpeted type
+            Assert.IsType<DataAccessException>(exception);
 
             // cleaning up, deleting project
             await _dataAccess.ExecuteAsync(new DeleteProjectByGuid(request.Guid));

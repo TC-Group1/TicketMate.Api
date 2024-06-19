@@ -16,6 +16,7 @@ namespace TicketMate.Tests.Shared.Projects
 
         public static async Task<Projects_DTO> InsertAndFetchProjectDtoAsync()
         {
+
             var guid = Guid.NewGuid();
 
             var insertProjectRequest = new InsertProject(guid, "Name");

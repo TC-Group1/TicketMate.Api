@@ -1,4 +1,5 @@
 ﻿using MySql.Data.MySqlClient;
+using TicketMate.Domain.Exceptions;
 using TicketMate.Persistence.DataRequestObjects.RolesRequests;
 using TicketMate.Persistence.DataRequestObjects.UserRequests;
 using TicketMate.Persistence.DataRequestObjects.UserRolesRequests;
@@ -22,7 +23,7 @@ namespace TicketMate.Persistence.Tests.DataRequestTests.UserRoleTests
                                         TestString.Random(15),
                                         TestString.Random(),
                                         TestString.Random(),
-                                        1,
+                                        true,
                                         TestString.Random());
 
             await _dataAccess.ExecuteAsync(insertUserRequest);
@@ -69,7 +70,7 @@ namespace TicketMate.Persistence.Tests.DataRequestTests.UserRoleTests
                                         TestString.Random(15),
                                         TestString.Random(),
                                         TestString.Random(),
-                                        1,
+                                        true,
                                         TestString.Random());
 
             await _dataAccess.ExecuteAsync(insertUserRequest);
@@ -90,7 +91,7 @@ namespace TicketMate.Persistence.Tests.DataRequestTests.UserRoleTests
             // Update UserRoleByUserId //
             var exception = await Record.ExceptionAsync(async () => await _dataAccess.ExecuteAsync(new UpdateRoleIdByUserId(userDto.Id, RandomId.Random())));
 
-            Assert.IsType<MySqlException>(exception);
+            Assert.IsType<DataAccessException>(exception);
 
             // Delete Inserted records
             await _dataAccess.ExecuteAsync(new DeleteUserRolesByUserId(userDto.Id));
