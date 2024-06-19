@@ -415,3 +415,4 @@ FodyWeavers.xsd
 /TicketMate.Api/obj/Debug/net7.0/TicketMate.Api.AssemblyInfoInputs.cache
 /TicketMate.Api/appsettings.json
 /TicketMate.Tests.Shared/Hidden.cs
+/TicketMate.Api/obj/Debug/net7.0/.NETCoreApp,Version=v7.0.AssemblyAttributes.cs
