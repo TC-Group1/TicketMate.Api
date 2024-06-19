@@ -1,16 +1,22 @@
-﻿using TicketMate.Application.Requests.UserRequests.DeleteByGuid;
+﻿using TicketMate.Persistence.DataRequestObjects.TicketRequests;
 
 namespace TicketMate.Application.Requests.TicketRequests.DeleteByGuid
 {
     internal class DeleteTicketByGuidHandler : DataRequestHandler<DeleteTicketByGuidRequest>
     {
-        public DeleteTicketByGuidHandler(IDataAccess dataAccess) : base(dataAccess)
-        {
-        }
+        public DeleteTicketByGuidHandler(IDataAccess dataAccess) : base(dataAccess) { }
 
-        public override Task ExecuteRequestAsync(DeleteTicketByGuidRequest request)
+        public override async Task ExecuteRequestAsync(DeleteTicketByGuidRequest request)
         {
-            throw new NotImplementedException();
+            var ticketDTO = await _dataAccess.FetchAsync(new GetTicketByGuid(request.TicketGuid));
+
+            if (ticketDTO == null)
+                throw new DoesNotExistException(nameof(Ticket), (request.TicketGuid, nameof(request.TicketGuid)));
+
+            var rowsAffected = await _dataAccess.ExecuteAsync(new DeleteTicketByGuid(request.TicketGuid));
+
+            if (rowsAffected <= 0)
+                throw new OperationFailedException();
         }
     }
 }
