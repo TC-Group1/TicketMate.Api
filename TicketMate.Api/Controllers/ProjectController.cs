@@ -2,6 +2,7 @@
 using TicketMate.Application.Abstraction;
 using TicketMate.Application.Requests.ProjectRequests.Insert;
 using TicketMate.Application.Requests.ProjectRequests.GetByGuid;
+using TicketMate.Application.Requests.ProjectRequests.UpdateByGuid;
 
 namespace TicketMate.Api.Controllers
 {
@@ -16,5 +17,8 @@ namespace TicketMate.Api.Controllers
 
         [HttpGet("Project/GetProjectByGuid")]
         public async Task GetByGuid(GetProjectByGuidRequest request) => await _orchestrator.GetRequestResponseAsync(request);
+
+        [HttpPut("Project/UpdateProjectByGuid")]
+        public async Task UpdateProjectByGuid([FromQuery] UpdateProjectByGuidRequest request) => await _orchestrator.ExecuteRequestAsync(request);
     }
 }
