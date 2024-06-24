@@ -1,7 +1,6 @@
 ﻿using TicketMate.Domain.Constants;
 using TicketMate.Domain.Validation.GuidValidation;
 using TicketMate.Domain.Validation.StringValidation;
-using TicketMate.Persistence.DataRequestObjects.ProjectRequests;
 
 namespace TicketMate.Application.Requests.ProjectRequests.UpdateByGuid
 {
