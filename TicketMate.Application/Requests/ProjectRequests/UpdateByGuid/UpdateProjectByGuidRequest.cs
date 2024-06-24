@@ -8,8 +8,8 @@ namespace TicketMate.Application.Requests.ProjectRequests.UpdateByGuid
     {
         public UpdateProjectByGuidRequest() { }
         public Guid Guid { get; set; }
-        public string Name { get; set; } = null!;
-        public bool IsActive { get; set; }
+        public string? Name { get; set; }
+        public bool? IsActive { get; set; }
 
 
         public bool IsValid(out Validator validator)
@@ -17,8 +17,8 @@ namespace TicketMate.Application.Requests.ProjectRequests.UpdateByGuid
             validator = new();
 
             validator.ApplyRule(new GuidRequiredRule(Guid, nameof(Guid)));
-            validator.ApplyRule(new StringRequiredRule(Name, nameof(Name)));
-            validator.ApplyRule(new StringLengthLimitRule(Name, nameof(Name), MaxLength.ProjectName));
+            if (Name != null)
+                validator.ApplyRule(new StringLengthLimitRule(Name, nameof(Name), MaxLength.ProjectName));
 
             return validator.IsPassingAllRules;
         }
