@@ -2,7 +2,7 @@
 {
     public class InsertUser : IDataExecute
     {
-        public InsertUser(Guid guid, string firstName, string lastName, string phoneNumber, string email, string avatar, bool isActive, string passwordHash)
+        public InsertUser(Guid guid, string firstName, string lastName, string phoneNumber, string email, string? avatar, bool isActive, string passwordHash)
         {
             Guid = guid;
             FirstName = firstName;
@@ -19,7 +19,7 @@
 
         public string Email { get; set; }
 
-        public string Avatar { get; set; }
+        public string? Avatar { get; set; }
 
         public string FirstName { get; set; }
 
