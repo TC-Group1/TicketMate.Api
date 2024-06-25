@@ -1,4 +1,6 @@
-﻿namespace TicketMate.Persistence.DataTransferObjects
+﻿using TicketMate.Domain.Models;
+
+namespace TicketMate.Persistence.DataTransferObjects
 {
     public class Tickets_DTO
     {
@@ -12,6 +14,6 @@
         public DateTime DateCreated { get; set; }
         public int CreatedByUserId { get; set; }
         public DateTime? LastModified { get; set; }
-
+        public Ticket AsDomainTicket() => new(Guid, Title, Description, DateCreated, LastModified, PriorityId, StatusId);
     }
 }

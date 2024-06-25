@@ -1,17 +1,8 @@
 ﻿using Moq;
-using MySql.Data.MySqlClient;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Reflection;
-using System.Text;
-using System.Threading.Tasks;
 using TicketMate.Application.Requests.UserRequests.UpdateByGuid;
-using TicketMate.Application.Tests.Helpers;
 using TicketMate.Domain.Constants;
 using TicketMate.Domain.Exceptions;
 using TicketMate.Persistence.DataRequestObjects.UserRequests;
-using TicketMate.Persistence.DataTransferObjects;
 
 namespace TicketMate.Application.Tests.RequestTests.UserRequestTests.UpdateUserByGuidTests
 {
