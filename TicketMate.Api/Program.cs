@@ -1,3 +1,4 @@
+using Microsoft.AspNetCore.Mvc;
 using TicketMate.Api.Middleware;
 using TicketMate.Application.Implementation;
 using TicketMate.Persistence.Implementation;
