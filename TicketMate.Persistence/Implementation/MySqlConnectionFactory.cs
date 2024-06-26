@@ -17,7 +17,8 @@ namespace TicketMate.Persistence.Implementation
                 Database = databaseName, // Ticketmate
                 UserID = userId, //ticketmate_dev_user
                 Password = password, // ticketmate_dev_pw
-                Port = port
+                Port = port,
+                Pooling = true
             };
 
             _connectionString = builder.ConnectionString;

@@ -18,7 +18,11 @@ namespace TicketMate.Persistence.Implementation
 
                 connection.Open();
 
-                return await connection.ExecuteAsync(request.GetSql(), request.GetParameters());
+                var rowsAffected = await connection.ExecuteAsync(request.GetSql(), request.GetParameters());
+
+                connection.Close();
+
+                return rowsAffected;
             }
             catch (MySqlException ex)
             {
@@ -34,7 +38,11 @@ namespace TicketMate.Persistence.Implementation
 
                 connection.Open();
 
-                return await connection.QueryFirstOrDefaultAsync<TResponse>(request.GetSql(), request.GetParameters());
+                var result = await connection.QueryFirstOrDefaultAsync<TResponse>(request.GetSql(), request.GetParameters());
+
+                connection.Close();
+
+                return result;
             }
             catch (MySqlException ex)
             {
@@ -50,7 +58,11 @@ namespace TicketMate.Persistence.Implementation
 
                 connection.Open();
 
-                return await connection.QueryAsync<TResponse>(request.GetSql(), request.GetParameters());
+                var results = await connection.QueryAsync<TResponse>(request.GetSql(), request.GetParameters());
+
+                connection.Close();
+
+                return results;
             }
             catch (MySqlException ex)
             {
