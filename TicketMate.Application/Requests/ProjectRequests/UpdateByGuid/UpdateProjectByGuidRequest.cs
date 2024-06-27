@@ -17,8 +17,8 @@ namespace TicketMate.Application.Requests.ProjectRequests.UpdateByGuid
             validator = new();
 
             validator.ApplyRule(new GuidRequiredRule(Guid, nameof(Guid)));
-            if (Name != null)
-                validator.ApplyRule(new StringLengthLimitRule(Name, nameof(Name), MaxLength.ProjectName));
+            
+            validator.ApplyRule(new StringLengthLimitRule(Name, nameof(Name), MaxLength.ProjectName, isRequiredString: false));
 
             return validator.IsPassingAllRules;
         }
