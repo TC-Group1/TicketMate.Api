@@ -15,5 +15,7 @@
         public const int PasswordHash = 256;
 
         public const int ProjectName = 80;
+
+        public const int TicketName = 80;
     }
 }

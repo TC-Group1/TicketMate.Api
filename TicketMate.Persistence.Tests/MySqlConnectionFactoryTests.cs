@@ -21,7 +21,7 @@ namespace TicketMate.Persistence.Tests
         [Fact]
         public void MySqlConnectionFactory_Given_ConnectionString_Should_ReturnConnection_ThatCanOpen()
         {
-            var connectionString = $"server={Hidden.DbServer};Port={Hidden.DbPort};uid={Hidden.DbUserId};pwd={Hidden.DbPassword};database={Hidden.DbName}";
+            var connectionString = $"server={Hidden.DbServer};Port={Hidden.DbPort};uid={Hidden.DbUserId};pwd={Hidden.DbPassword};database={Hidden.DbName};Pooling=true;";
 
             var connectionFactory = new MySqlConnectionFactory(connectionString);
 
