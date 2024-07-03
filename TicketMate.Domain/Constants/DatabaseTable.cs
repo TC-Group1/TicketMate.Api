@@ -11,5 +11,7 @@
         public const string Projects = "Projects";
 
         public const string Tickets = "Tickets";
+
+        public const string ProjectTickets = "ProjectTickets";
     }
 }
