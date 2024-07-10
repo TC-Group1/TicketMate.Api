@@ -41,8 +41,10 @@ namespace TicketMate.Tests.Shared.Tickets
         /// <param name="projectGuid">Project Guid</param>
         /// <param name="userGuid">User Guid</param>
         /// <returns></returns>
-        public static async Task<Tickets_DTO> InsertAndFetchTicketDtoAsync(Guid ticketGuid, Guid projectGuid, Guid userGuid)
+        public static async Task<Tickets_DTO> InsertAndFetchTicketDtoAsync(Guid projectGuid, Guid userGuid)
         {
+            var ticketGuid = Guid.NewGuid();
+
             var insertTicketRequest = new InsertTicket(ticketGuid,
                        projectGuid,
                        TestString.Random(),
