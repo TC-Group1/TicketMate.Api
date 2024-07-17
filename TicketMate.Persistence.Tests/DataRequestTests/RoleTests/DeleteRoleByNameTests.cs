@@ -6,13 +6,13 @@ namespace TicketMate.Persistence.Tests.DataRequestTests.RoleTests
     public class DeleteRoleByNameTests : BaseDataRequestTest
     {
         [Fact]
-        public async Task DeleteRoleByName_Given_RoleIsDeleted_ShouldReturn_ZeroRowsAffected()
+        public async Task DeleteRoleByName_Given_RoleIsNotDeleted_ShouldReturn_ZeroRowsAffected()
         {
             Assert.Equal(0, await _dataAccess.ExecuteAsync(new DeleteRoleByName(TestString.Random(15))));
         }
 
         [Fact]
-        public async Task DeleteRoleByName_Given_RoleNotDeleted_ShouldReturn_OneRowAffected()
+        public async Task DeleteRoleByName_Given_RoleIsDeleted_ShouldReturn_OneRowAffected()
         {
             var roleName = TestString.Random(15);
 

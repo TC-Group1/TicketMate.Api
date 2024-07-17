@@ -1,5 +1,4 @@
-﻿using MySql.Data.MySqlClient;
-using TicketMate.Domain.Exceptions;
+﻿using TicketMate.Domain.Exceptions;
 using TicketMate.Persistence.DataRequestObjects.ProjectRequests;
 using TicketMate.Persistence.DataRequestObjects.TicketRequests;
 using TicketMate.Persistence.DataRequestObjects.UserRequests;
@@ -41,7 +40,7 @@ namespace TicketMate.Persistence.Tests.DataRequestTests.Tickets
         }
 
         [Fact]
-        public async Task InsertTicket_Given_GuidAlreadyTaken_ShouldThrow_MySqlException()
+        public async Task InsertTicket_Given_GuidAlreadyTaken_ShouldThrow_DataAccessException()
         {
             var projects_DTO = await TestProject.InsertAndFetchProjectDtoAsync();
 

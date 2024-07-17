@@ -1,5 +1,4 @@
-﻿using MySql.Data.MySqlClient;
-using TicketMate.Domain.Constants;
+﻿using TicketMate.Domain.Constants;
 using TicketMate.Domain.Exceptions;
 using TicketMate.Persistence.DataRequestObjects.UserRequests;
 using TicketMate.Tests.Shared.Helpers;

@@ -1,5 +1,4 @@
-﻿using MySql.Data.MySqlClient;
-using TicketMate.Domain.Exceptions;
+﻿using TicketMate.Domain.Exceptions;
 using TicketMate.Persistence.DataRequestObjects.RolesRequests;
 using TicketMate.Tests.Shared.Helpers;
 
@@ -22,7 +21,7 @@ namespace TicketMate.Persistence.Tests.DataRequestTests.RoleTests
         }
 
         [Fact]
-        public async Task InsertRole_Given_RoleNameAlreadyTaken_ShouldThrow_MySqlException()
+        public async Task InsertRole_Given_RoleNameAlreadyTaken_ShouldThrow_DataAccessException()
         {
             var roleName = TestString.Random(15);
 
