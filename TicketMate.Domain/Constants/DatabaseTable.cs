@@ -12,6 +12,8 @@
 
         public const string Tickets = "Tickets";
 
-        public const string TicketsAssignedUsers = "TicketsAssignedUsers";
-    }
+        public const string ProjectTickets = "ProjectTickets";
+
+		public const string TicketsAssignedUsers = "TicketsAssignedUsers";
+	}
 }
