@@ -5,7 +5,7 @@ namespace TicketMate.Persistence.Tests.DataRequestTests.ProjectTests
     public class GetProjectByGuidTests : BaseDataRequestTest
     {
         [Fact]
-        public async Task GetProjectByGuid_ProjectNotExesting_ShouldReturn_Null()
+        public async Task GetProjectByGuid_ProjectNotExisting_ShouldReturn_Null()
         {
             Assert.Null(await _dataAccess.FetchAsync(new GetProjectByGuid(Guid.NewGuid())));
         }

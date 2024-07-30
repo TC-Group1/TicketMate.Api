@@ -1,5 +1,4 @@
-﻿using MySql.Data.MySqlClient;
-using TicketMate.Domain.Constants;
+﻿using TicketMate.Domain.Constants;
 using TicketMate.Domain.Exceptions;
 using TicketMate.Persistence.DataRequestObjects.ProjectRequests;
 using TicketMate.Tests.Shared.Helpers;
@@ -44,6 +43,8 @@ namespace TicketMate.Persistence.Tests.DataRequestTests.ProjectTests
             var updatedProject = await _dataAccess.FetchAsync(new GetProjectByGuid(guid));
 
             Assert.Equal(1, rowsAffected);
+            Assert.NotNull(originalProject);
+            Assert.NotNull(updatedProject);
             Assert.Equal(originalProject.Name, updatedProject.Name);
             Assert.Equal(originalProject.IsActive, updatedProject.IsActive);
 
@@ -68,6 +69,8 @@ namespace TicketMate.Persistence.Tests.DataRequestTests.ProjectTests
             var updatedProject = await _dataAccess.FetchAsync(new GetProjectByGuid(guid));
 
             Assert.Equal(1, rowsAffected);
+            Assert.NotNull(originalProject);
+            Assert.NotNull(updatedProject);
             Assert.Equal(originalProject.Name, updatedProject.Name);
 
             await _dataAccess.ExecuteAsync(new DeleteProjectByGuid(guid));

@@ -1,5 +1,4 @@
-﻿using MySql.Data.MySqlClient;
-using TicketMate.Domain.Exceptions;
+﻿using TicketMate.Domain.Exceptions;
 using TicketMate.Persistence.DataRequestObjects.RolesRequests;
 using TicketMate.Persistence.DataRequestObjects.UserRequests;
 using TicketMate.Persistence.DataRequestObjects.UserRolesRequests;
@@ -58,7 +57,7 @@ namespace TicketMate.Persistence.Tests.DataRequestTests.UserRoleTests
 
 
         [Fact]
-        public async Task UpdateUserRole_Given_NewRoleDoesNotExist_ShouldThrow_MySqlException()
+        public async Task UpdateUserRole_Given_NewRoleDoesNotExist_ShouldThrow_DataAccessException()
         {
             var guid = Guid.NewGuid();
             var adminRole = TestString.Random(15);

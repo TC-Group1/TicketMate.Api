@@ -6,13 +6,13 @@ namespace TicketMate.Persistence.Tests.DataRequestTests.UserTests
     public class DeleteUserByGuidTests : BaseDataRequestTest
     {
         [Fact]
-        public async Task DeleteUserByGuid_Given_UserIsDeleted_ShouldReturn_ZeroRowsAffected()
+        public async Task DeleteUserByGuid_Given_UserIsNotDeleted_ShouldReturn_ZeroRowsAffected()
         {
             Assert.Equal(0, await _dataAccess.ExecuteAsync(new DeleteUserByGuid(Guid.NewGuid())));
         }
 
         [Fact]
-        public async Task DeleteUserByGuid_Given_UserNotDeleted_ShouldReturn_OneRowAffected()
+        public async Task DeleteUserByGuid_Given_UserIsDeleted_ShouldReturn_OneRowAffected()
         {
             var guid = Guid.NewGuid();
 

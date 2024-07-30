@@ -1,7 +1,6 @@
 ﻿using TicketMate.Persistence.DataRequestObjects.ProjectRequests;
 using TicketMate.Persistence.DataRequestObjects.TicketRequests;
 using TicketMate.Persistence.DataRequestObjects.UserRequests;
-using TicketMate.Tests.Shared.Helpers;
 using TicketMate.Tests.Shared.Projects;
 using TicketMate.Tests.Shared.Tickets;
 using TicketMate.Tests.Shared.Users;
@@ -14,7 +13,7 @@ namespace TicketMate.Persistence.Tests.DataRequestTests.Tickets
     public class GetTicketByGuidTests : BaseDataRequestTest
     {
         [Fact]
-        public async Task GetUserByGuid_Given_UserNotExisting_ShouldReturn_Null()
+        public async Task GetTicketByGuid_Given_TicketNotExisting_ShouldReturn_Null()
         {
             Assert.Null(await _dataAccess.FetchAsync(new GetTicketByGuid(Guid.NewGuid())));
         }
