@@ -1,14 +1,12 @@
 ﻿namespace TicketMate.Persistence.DataRequestObjects.ProjectTicketsRequests
 {
-    public class GetProjectTicket : IDataFetch<Tickets_DTO>
+    public class GetProjectTickets : IDataFetch<Tickets_DTO>
     {
-        public GetProjectTicket(int projectId, int ticketId)
+        public GetProjectTickets(int projectId)
         {
             ProjectId = projectId;
-            TicketId = ticketId;
         }
         public int ProjectId { get; set; }
-        public int TicketId { get; set; }
 
         public object? GetParameters() => this;
 
@@ -17,7 +15,7 @@
                 SELECT {DatabaseTable.Tickets}.* 
                 FROM {DatabaseTable.Tickets}
                 JOIN {DatabaseTable.ProjectTickets} ON {DatabaseTable.Tickets}.Id={DatabaseTable.ProjectTickets}.TicketId 
-                WHERE ProjectId=@ProjectId;
+                WHERE {DatabaseTable.ProjectTickets}.ProjectId=@ProjectId;
             ";
     }
 }
