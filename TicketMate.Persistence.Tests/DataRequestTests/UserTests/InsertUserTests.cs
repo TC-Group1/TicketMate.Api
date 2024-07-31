@@ -1,5 +1,4 @@
-﻿using MySql.Data.MySqlClient;
-using TicketMate.Domain.Exceptions;
+﻿using TicketMate.Domain.Exceptions;
 using TicketMate.Persistence.DataRequestObjects.UserRequests;
 using TicketMate.Tests.Shared.Helpers;
 
@@ -63,7 +62,7 @@ namespace TicketMate.Persistence.Tests.DataRequestTests.UserTests
         }
 
         [Fact]
-        public async Task InsertUser_Given_UsernameAlreadyTaken_ShouldThrow_MySqlException()
+        public async Task InsertUser_Given_UsernameAlreadyTaken_ShouldThrow_DataAccessException()
         {
             var firstName = TestString.Random();
             var lastName = TestString.Random();

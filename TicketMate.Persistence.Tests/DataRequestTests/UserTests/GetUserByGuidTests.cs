@@ -26,7 +26,7 @@ namespace TicketMate.Persistence.Tests.DataRequestTests.UserTests
                                         TestString.Random());
 
             await _dataAccess.ExecuteAsync(insertUserRequest);
-        
+
             var result = await _dataAccess.FetchAsync(new GetUserByGuid(guid));
 
             // Delete inserted user

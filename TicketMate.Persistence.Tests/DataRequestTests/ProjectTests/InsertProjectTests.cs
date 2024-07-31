@@ -30,7 +30,7 @@ namespace TicketMate.Persistence.Tests.DataRequestTests.ProjectTests
         }
 
         [Fact]
-        public async Task InsertProject_Given_GuidAlreadyTaken_ShouldThrow_MySqlException()
+        public async Task InsertProject_Given_GuidAlreadyTaken_ShouldThrow_DataAccessException()
         {
             var guid = Guid.NewGuid();
 
@@ -43,7 +43,7 @@ namespace TicketMate.Persistence.Tests.DataRequestTests.ProjectTests
             // storing the exception when we run that request
             var exception = await Record.ExceptionAsync(async () => await _dataAccess.ExecuteAsync(request));
 
-            // asserting that the exception is excpeted type
+            // asserting that the exception is expected type
             Assert.IsType<DataAccessException>(exception);
 
             // cleaning up, deleting project

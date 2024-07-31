@@ -1,5 +1,4 @@
 ﻿using TicketMate.Persistence.DataRequestObjects.TicketRequests;
-using TicketMate.Tests.Shared.Helpers;
 using TicketMate.Tests.Shared.Projects;
 using TicketMate.Tests.Shared.Tickets;
 using TicketMate.Tests.Shared.Users;
@@ -9,13 +8,13 @@ namespace TicketMate.Persistence.Tests.DataRequestTests.Tickets
     public class DeleteTicketByGuidTests : BaseDataRequestTest
     {
         [Fact]
-        public async Task DeleteTicketByGuid_Given_TicketIsDeleted_ShouldReturn_ZeroRowsAffected()
+        public async Task DeleteTicketByGuid_Given_TicketIsNotDeleted_ShouldReturn_ZeroRowsAffected()
         {
             Assert.Equal(0, await _dataAccess.ExecuteAsync(new DeleteTicketByGuid(Guid.NewGuid())));
         }
 
         [Fact]
-        public async Task DeleteTicketByGuid_Given_TicketNotDeleted_ShouldReturn_OneRowAffected()
+        public async Task DeleteTicketByGuid_Given_TicketIsDeleted_ShouldReturn_OneRowAffected()
         {
             var projects_DTO = await TestProject.InsertAndFetchProjectDtoAsync();
 
