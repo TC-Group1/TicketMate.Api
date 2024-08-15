@@ -22,11 +22,15 @@ namespace TicketMate.Persistence.Tests.DataRequestTests
                                 internal const string DbUserId = "REPLACE THIS WITH DB USERNAME";
                                 internal const string DbPassword = "REPLACE THIS WITH DB PASSWORD";
                                 // Our Docker DB is exposed on port 3309
-                                internal const string DbPort = "3309"; 
+                                internal const uint DbPort = 3309;
                             }
             */
-
+#if DEBUG
             _dataAccess = new DataAccess(new MySqlConnectionFactory(Hidden.DbServer, Hidden.DbPort, Hidden.DbName, Hidden.DbUserId, Hidden.DbPassword));
+#else
+            _dataAccess = new DataAccess(new MySqlConnectionFactory("123-tm.mysql.database.azure.com", 3306, "TicketMate", "admin_tm_user", "root_password1!"));
+#endif
+
         }
     }
 }
