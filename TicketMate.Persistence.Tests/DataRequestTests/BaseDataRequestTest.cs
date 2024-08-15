@@ -28,7 +28,7 @@ namespace TicketMate.Persistence.Tests.DataRequestTests
 #if DEBUG
             _dataAccess = new DataAccess(new MySqlConnectionFactory(Hidden.DbServer, Hidden.DbPort, Hidden.DbName, Hidden.DbUserId, Hidden.DbPassword));
 #else
-            _dataAccess = new DataAccess(new MySqlConnectionFactory("123-tm.mysql.database.azure.com", 3306, "TicketMate", "Hidden.DbUserId", "root_password1!"));
+            _dataAccess = new DataAccess(new MySqlConnectionFactory("123-tm.mysql.database.azure.com", 3306, "TicketMate", "admin_tm_user", "root_password1!"));
 #endif
 
         }
