@@ -25,7 +25,7 @@ namespace TicketMate.Persistence.Tests.DataRequestTests.ProjectTicketTests
 
 			await _dataAccess.ExecuteAsync(new InsertProjectTicket(existingProject.Id, existingTicket.Id));
 
-			var rowsAffectedWhenDeleting = await _dataAccess.ExecuteAsync(new DeleteProjectTicket(existingProject.Id, existingTicket.Id));
+			var rowsAffectedWhenDeleting = await _dataAccess.ExecuteAsync(new DeleteProjectTicket(existingProject.Guid, existingTicket.Guid));
 
 			await _dataAccess.ExecuteAsync(new DeleteTicketByGuid(existingTicket.Guid));
 			await _dataAccess.ExecuteAsync(new DeleteProjectByGuid(existingProject.Guid));
@@ -37,7 +37,7 @@ namespace TicketMate.Persistence.Tests.DataRequestTests.ProjectTicketTests
 		[Fact]
 		public async Task DeleteProjectTicket_Given_ProjectTicketIsNotDeleted_ShouldReturn_NoRowsAffected()
 		{
-			var rowsAffected = await _dataAccess.ExecuteAsync(new DeleteProjectTicket(int.MinValue, int.MinValue));
+			var rowsAffected = await _dataAccess.ExecuteAsync(new DeleteProjectTicket(Guid.NewGuid(), Guid.NewGuid()));
 
 			Assert.Equal(0, rowsAffected);
 		}

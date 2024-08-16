@@ -2,11 +2,11 @@
 
 namespace TicketMate.Application.Requests.TicketRequests.DeleteByGuid
 {
-    public class DeleteTicketByGuidRequest : IValidatable, IRequest
+    public class DeleteProjectTicketRequest : IValidatable, IRequest
     {
-        public DeleteTicketByGuidRequest() { }
+        public DeleteProjectTicketRequest() { }
 
-        public DeleteTicketByGuidRequest(Guid ticketGuid) => TicketGuid = ticketGuid;
+        public DeleteProjectTicketRequest(Guid ticketGuid) => TicketGuid = ticketGuid;
 
         public Guid TicketGuid { get; set; }
         public bool IsValid(out Validator validator)

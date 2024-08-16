@@ -7,7 +7,7 @@ namespace TicketMate.Application.Tests.RequestTests.TicketRequestTests.DeleteTic
 {
     public class DeleteTicketByGuidHandlerTests : HandlerTest
     {
-        private readonly DeleteTicketByGuidRequest _request = new();
+        private readonly DeleteProjectTicketRequest _request = new();
 
         private readonly DeleteTicketByGuidHandler _handler;
 

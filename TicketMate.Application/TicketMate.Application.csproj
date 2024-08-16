@@ -16,6 +16,7 @@
 
   <ItemGroup>
     <Folder Include="BaseObjects\BaseHandlers\" />
+    <Folder Include="Requests\ProjectTicketRequests\Insert\" />
   </ItemGroup>
 
 </Project>

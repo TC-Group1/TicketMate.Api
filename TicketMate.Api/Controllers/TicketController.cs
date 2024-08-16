@@ -21,7 +21,7 @@ namespace TicketMate.Api.Controllers
         public async Task UpdateTicketByGuid([FromQuery] UpdateTicketByGuidRequest request) => await _orchestrator.ExecuteRequestAsync(request);
 
         [HttpDelete("Ticket/DeleteTicketByGuid")]
-        public async Task DeleteTicketByGuid(DeleteTicketByGuidRequest request) => await _orchestrator.ExecuteRequestAsync(request);
+        public async Task DeleteTicketByGuid(DeleteProjectTicketRequest request) => await _orchestrator.ExecuteRequestAsync(request);
 
     }
 }

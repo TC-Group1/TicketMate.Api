@@ -7,7 +7,7 @@ namespace TicketMate.Application.Tests.RequestTests.TicketRequestTests.DeleteTic
         [Fact]
         public void DeleteTicketByGuidRequest_Given_TicketGuidNotSet_IsValid_ShouldReturn_False()
         {
-            var request = new DeleteTicketByGuidRequest();
+            var request = new DeleteProjectTicketRequest();
 
             Assert.False(request.IsValid(out _));
         }
@@ -15,7 +15,7 @@ namespace TicketMate.Application.Tests.RequestTests.TicketRequestTests.DeleteTic
         [Fact]
         public void DeleteTicketByGuidRequest_Given_TicketGuidIsEmpty_IsValid_ShouldReturn_False()
         {
-            var request = new DeleteTicketByGuidRequest(Guid.Empty);
+            var request = new DeleteProjectTicketRequest(Guid.Empty);
 
             Assert.False(request.IsValid(out _));
         }
@@ -23,7 +23,7 @@ namespace TicketMate.Application.Tests.RequestTests.TicketRequestTests.DeleteTic
         [Fact]
         public void DeleteTicketByGuidRequest_Given_TicketGuidIsValidGuid_IsValid_ShouldReturn_True()
         {
-            var request = new DeleteTicketByGuidRequest(Guid.NewGuid());
+            var request = new DeleteProjectTicketRequest(Guid.NewGuid());
 
             Assert.True(request.IsValid(out _));
         }

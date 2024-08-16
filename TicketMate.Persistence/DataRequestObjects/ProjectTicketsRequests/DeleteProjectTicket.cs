@@ -2,18 +2,23 @@
 {
 	public class DeleteProjectTicket : IDataExecute
 	{
-		public DeleteProjectTicket(int projectId, int ticketId)
+		public DeleteProjectTicket(Guid projectGuid, Guid ticketGuid)
 		{
-			ProjectId = projectId;
-			TicketId = ticketId;
+			ProjectGuid = projectGuid;
+			TicketGuid = ticketGuid;
 		}
 
-		public int ProjectId { get; set; }
-		public int TicketId { get; set; }
+		public Guid ProjectGuid { get; set; }
+		public Guid TicketGuid { get; set; }
 
 		public object? GetParameters() => this;
 
-		public string GetSql() => $@"DELETE FROM {DatabaseTable.ProjectTickets} WHERE ProjectId = @ProjectId AND TicketId = @TicketId";
+		public string GetSql() => 
+		$@"
+			DELETE FROM {DatabaseTable.ProjectTickets}
+			WHERE TicketId = (SELECT Id FROM {DatabaseTable.Tickets} WHERE Guid = @TicketGuid)
+			AND ProjectId = (SELECT Id FROM {DatabaseTable.Projects} WHERE Guid = @ProjectGuid)
+		";
 
-	}
+    }
 }

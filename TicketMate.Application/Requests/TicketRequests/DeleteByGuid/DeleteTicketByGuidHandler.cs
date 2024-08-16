@@ -2,11 +2,11 @@
 
 namespace TicketMate.Application.Requests.TicketRequests.DeleteByGuid
 {
-    internal class DeleteTicketByGuidHandler : DataRequestHandler<DeleteTicketByGuidRequest>
+    internal class DeleteTicketByGuidHandler : DataRequestHandler<DeleteProjectTicketRequest>
     {
         public DeleteTicketByGuidHandler(IDataAccess dataAccess) : base(dataAccess) { }
 
-        public override async Task ExecuteRequestAsync(DeleteTicketByGuidRequest request)
+        public override async Task ExecuteRequestAsync(DeleteProjectTicketRequest request)
         {
             var ticketDTO = await _dataAccess.FetchAsync(new GetTicketByGuid(request.TicketGuid));
 
