@@ -1,4 +1,3 @@
-using Microsoft.AspNetCore.Mvc;
 using TicketMate.Api.Middleware;
 using TicketMate.Application.Implementation;
 using TicketMate.Persistence.Implementation;
@@ -9,6 +8,14 @@ builder.Services.AddControllers();
 
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
+
+builder.Configuration
+    .AddJsonFile("appsettings.json")
+#if DEBUG
+    .AddJsonFile("appsettings.Development.json");
+#else
+    .AddJsonFile("appsettings.Production.json");
+#endif
 
 // Inject Dependencies
 builder.Services.InjectPersistenceDependencies(builder.Configuration.GetConnectionString("Default"));
@@ -36,5 +43,3 @@ app.MapControllers();
 app.UseMiddleware<ExceptionHandlingMiddleware>();
 
 app.Run();
-
-
