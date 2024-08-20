@@ -31,4 +31,8 @@
     <ProjectReference Include="..\TicketMate.Tests.Shared\TicketMate.Tests.Shared.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="RequestTests\ProjectTicketRequestTests\InsertProjectTicketTests\" />
+  </ItemGroup>
+
 </Project>
