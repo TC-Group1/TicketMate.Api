@@ -9,10 +9,7 @@ namespace TicketMate.Api.Controllers
 {
     public class UserController : BaseController
     {
-        public UserController(IOrchestrator orchestrator) : base(orchestrator) 
-        {
-
-        }
+        public UserController(IOrchestrator orchestrator) : base(orchestrator) { }
 
         [HttpDelete("User/DeleteUserByGuid")]
         public async Task DeleteUserByGuid(DeleteUserByGuidRequest request) => await _orchestrator.ExecuteRequestAsync(request);
@@ -21,9 +18,9 @@ namespace TicketMate.Api.Controllers
         public async Task<GetUserByGuidResponse> GetUserByGuid(GetUserByGuidRequest request) => await _orchestrator.GetRequestResponseAsync(request);
 
         [HttpPost("User/InsertUser")]
-        public async Task InsertUser(InsertUserRequest request) => await _orchestrator.ExecuteRequestAsync(request);
+        public async Task InsertUser([FromBody] InsertUserRequest request) => await _orchestrator.ExecuteRequestAsync(request);
 
         [HttpPut("User/UpdateUserByGuid")]
-        public async Task UpdateUserByGuid([FromQuery]UpdateUserByGuidRequest request) => await _orchestrator.ExecuteRequestAsync(request);
+        public async Task UpdateUserByGuid([FromBody] UpdateUserByGuidRequest request) => await _orchestrator.ExecuteRequestAsync(request);
     }
 }

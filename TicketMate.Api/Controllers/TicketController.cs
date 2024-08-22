@@ -12,13 +12,13 @@ namespace TicketMate.Api.Controllers
         public TicketController(IOrchestrator orchestrator) : base(orchestrator) { }
 
         [HttpPost("Ticket/InsertTicket")]
-        public async Task InsertTicket(InsertTicketRequest request) => await _orchestrator.ExecuteRequestAsync(request);
+        public async Task InsertTicket([FromBody] InsertTicketRequest request) => await _orchestrator.ExecuteRequestAsync(request);
 
         [HttpGet("Ticket/GetTicketByGuid")]
         public async Task GetByGuid(GetTicketByGuidRequest request) => await _orchestrator.GetRequestResponseAsync(request);
 
         [HttpPut("Ticket/UpdateTicketByGuid")]
-        public async Task UpdateTicketByGuid([FromQuery] UpdateTicketByGuidRequest request) => await _orchestrator.ExecuteRequestAsync(request);
+        public async Task UpdateTicketByGuid([FromBody] UpdateTicketByGuidRequest request) => await _orchestrator.ExecuteRequestAsync(request);
 
         [HttpDelete("Ticket/DeleteTicketByGuid")]
         public async Task DeleteTicketByGuid(DeleteTicketByGuidRequest request) => await _orchestrator.ExecuteRequestAsync(request);
