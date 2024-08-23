@@ -1,6 +1,6 @@
 ﻿using TicketMate.Application.Requests.UserRequests.UpdateByGuid;
 using TicketMate.Domain.Constants;
-using TicketMate.Tests.Shared.Helpers;
+using TicketMate.Tests.Shared.TestObjects;
 
 namespace TicketMate.Application.Tests.RequestTests.UserRequestTests.UpdateUserByGuidTests
 {

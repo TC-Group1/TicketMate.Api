@@ -2,6 +2,7 @@
 using TicketMate.Persistence.DataRequestObjects.UserRequests;
 using TicketMate.Persistence.DataRequestObjects.UserRolesRequests;
 using TicketMate.Tests.Shared.Helpers;
+using TicketMate.Tests.Shared.TestObjects;
 
 namespace TicketMate.Persistence.Tests.DataRequestTests.UserRoleTests
 {
@@ -10,7 +11,7 @@ namespace TicketMate.Persistence.Tests.DataRequestTests.UserRoleTests
         [Fact]
         public async Task DeleteUserRolesByUserId_Given_UserRoleNotExisting_ShouldReturn_ZeroRowsAffected()
         {
-            Assert.Equal(0, await _dataAccess.ExecuteAsync(new DeleteUserRolesByUserId(RandomId.Random())));
+            Assert.Equal(0, await _dataAccess.ExecuteAsync(new DeleteUserRolesByUserId(int.MinValue)));
         }
 
         [Fact]

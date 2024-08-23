@@ -3,7 +3,7 @@ using TicketMate.Application.Requests.ProjectRequests.UpdateByGuid;
 using TicketMate.Domain.Constants;
 using TicketMate.Domain.Exceptions;
 using TicketMate.Persistence.DataRequestObjects.ProjectRequests;
-using TicketMate.Tests.Shared.Helpers;
+using TicketMate.Tests.Shared.TestObjects;
 
 namespace TicketMate.Application.Tests.RequestTests.ProjectRequestTests.UpdateProjectByGuidTests
 {

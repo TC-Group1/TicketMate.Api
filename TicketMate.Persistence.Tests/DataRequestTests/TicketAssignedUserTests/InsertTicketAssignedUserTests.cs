@@ -4,9 +4,7 @@ using TicketMate.Persistence.DataRequestObjects.ProjectRequests;
 using TicketMate.Persistence.DataRequestObjects.TicketRequests;
 using TicketMate.Persistence.DataRequestObjects.TicketsAssignedUsersRequest;
 using TicketMate.Persistence.DataRequestObjects.UserRequests;
-using TicketMate.Tests.Shared.Projects;
-using TicketMate.Tests.Shared.Tickets;
-using TicketMate.Tests.Shared.Users;
+using TicketMate.Tests.Shared.TestObjects;
 
 namespace TicketMate.Persistence.Tests.DataRequestTests.TicketAssignedUserTests
 {
