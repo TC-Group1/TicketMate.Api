@@ -25,7 +25,7 @@ namespace TicketMate.Persistence.DataRequestObjects.TicketRequests
                                            SET Title = COALESCE(@Title, Title),  
                                            DESCRIPTION = COALESCE(@Description, Description),
                                            PRIORITYID = COALESCE(@PriorityId, PriorityId), 
-                                           STATUSID = COALESCE(@StatusId, StatusId), 
+                                           STATUSID = @StatusId, 
                                            LASTMODIFIED = UTC_DATE()
                                            WHERE Guid = @guid";
     }
