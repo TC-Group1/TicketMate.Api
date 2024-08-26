@@ -1,6 +1,6 @@
 ﻿using System.Text;
 
-namespace TicketMate.Tests.Shared.Helpers
+namespace TicketMate.Tests.Shared.TestObjects
 {
     /// <summary>
     /// Generate a Random Test String
