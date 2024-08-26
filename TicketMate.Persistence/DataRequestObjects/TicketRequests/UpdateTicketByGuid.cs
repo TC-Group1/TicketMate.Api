@@ -1,11 +1,13 @@
-﻿namespace TicketMate.Persistence.DataRequestObjects.TicketRequests
+﻿using TicketMate.Domain.Enums;
+
+namespace TicketMate.Persistence.DataRequestObjects.TicketRequests
 {
     /// <summary>
     /// Update Ticket by Guid
     /// </summary>
     public class UpdateTicketByGuid : IDataExecute
     {
-        public UpdateTicketByGuid(Guid guid, string title, string description, int? priorityId, int? statusId)
+        public UpdateTicketByGuid(Guid guid, string title, string description, int? priorityId, Statuses statusId)
         {
             Guid = guid;
             Title = title;
@@ -17,7 +19,7 @@
         public string Title { get; set; } = string.Empty;
         public string Description { get; set; } = string.Empty;
         public int? PriorityId { get; set; }
-        public int? StatusId { get; set; }
+        public Statuses StatusId { get; set; }
         public object? GetParameters() => this;
         public string GetSql() => $@"UPDATE {DatabaseTable.Tickets}  
                                            SET Title = COALESCE(@Title, Title),  

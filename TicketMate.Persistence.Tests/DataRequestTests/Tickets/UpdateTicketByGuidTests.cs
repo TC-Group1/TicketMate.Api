@@ -1,4 +1,6 @@
-﻿using TicketMate.Persistence.DataRequestObjects.ProjectRequests;
+﻿using TicketMate.Domain.Enums;
+using TicketMate.Domain.Models;
+using TicketMate.Persistence.DataRequestObjects.ProjectRequests;
 using TicketMate.Persistence.DataRequestObjects.TicketRequests;
 using TicketMate.Persistence.DataRequestObjects.UserRequests;
 using TicketMate.Tests.Shared.Helpers;
@@ -22,7 +24,7 @@ namespace TicketMate.Persistence.Tests.DataRequestTests.Tickets
             await TestTicket.InsertTicketAsync(
                 ticketGuid: ticketGuid, projectGuid: projects_DTO.Guid, userGuid: user_DTO.Guid);
 
-            var updateRequest = new UpdateTicketByGuid(ticketGuid, TestString.Random(), TestString.Random(), null, null);
+            var updateRequest = new UpdateTicketByGuid(ticketGuid, TestString.Random(), TestString.Random(), null, Statuses.New);
 
             var rowsAffected = await _dataAccess.ExecuteAsync(updateRequest);
 
@@ -51,7 +53,7 @@ namespace TicketMate.Persistence.Tests.DataRequestTests.Tickets
 
             await _dataAccess.ExecuteAsync(insertTicketRequest);
 
-            var updateRequest = new UpdateTicketByGuid(ticketGuid, TestString.Random(), TestString.Random(), null, null);
+            var updateRequest = new UpdateTicketByGuid(ticketGuid, TestString.Random(), TestString.Random(), null, Statuses.New);
 
             await _dataAccess.ExecuteAsync(updateRequest);
             var getTicket = await _dataAccess.FetchAsync(new GetTicketByGuid(ticketGuid));
@@ -72,7 +74,7 @@ namespace TicketMate.Persistence.Tests.DataRequestTests.Tickets
         public async Task UpdateTicketByGuid_IfTicketDoesNotExist_ShouldReturnZeroRowAffected()
         {
 
-            var updateRequest = new UpdateTicketByGuid(Guid.NewGuid(), TestString.Random(), TestString.Random(), null, null);
+            var updateRequest = new UpdateTicketByGuid(Guid.NewGuid(), TestString.Random(), TestString.Random(), null, Statuses.New);
 
             var rowsAffected = await _dataAccess.ExecuteAsync(updateRequest);
 
