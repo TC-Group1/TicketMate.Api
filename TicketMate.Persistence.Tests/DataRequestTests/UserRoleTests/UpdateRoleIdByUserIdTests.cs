@@ -3,6 +3,7 @@ using TicketMate.Persistence.DataRequestObjects.RolesRequests;
 using TicketMate.Persistence.DataRequestObjects.UserRequests;
 using TicketMate.Persistence.DataRequestObjects.UserRolesRequests;
 using TicketMate.Tests.Shared.Helpers;
+using TicketMate.Tests.Shared.TestObjects;
 
 namespace TicketMate.Persistence.Tests.DataRequestTests.UserRoleTests
 {
@@ -88,7 +89,7 @@ namespace TicketMate.Persistence.Tests.DataRequestTests.UserRoleTests
             await _dataAccess.ExecuteAsync(new InsertUserRole(userDto.Id, adminRoleDto.Id));
 
             // Update UserRoleByUserId //
-            var exception = await Record.ExceptionAsync(async () => await _dataAccess.ExecuteAsync(new UpdateRoleIdByUserId(userDto.Id, RandomId.Random())));
+            var exception = await Record.ExceptionAsync(async () => await _dataAccess.ExecuteAsync(new UpdateRoleIdByUserId(userDto.Id, int.MinValue)));
 
             Assert.IsType<DataAccessException>(exception);
 

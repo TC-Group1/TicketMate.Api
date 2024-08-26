@@ -3,6 +3,7 @@ using TicketMate.Persistence.DataRequestObjects.RolesRequests;
 using TicketMate.Persistence.DataRequestObjects.UserRequests;
 using TicketMate.Persistence.DataRequestObjects.UserRolesRequests;
 using TicketMate.Tests.Shared.Helpers;
+using TicketMate.Tests.Shared.TestObjects;
 
 namespace TicketMate.Persistence.Tests.DataRequestTests.UserRoleTests
 {
@@ -64,7 +65,7 @@ namespace TicketMate.Persistence.Tests.DataRequestTests.UserRoleTests
             Assert.NotNull(roleDto);
 
             // Insert Test UserRole //
-            var request = new InsertUserRole(RandomId.Random(), roleDto.Id);
+            var request = new InsertUserRole(int.MinValue, roleDto.Id);
 
             // assert that request throws MySqlException
             var exception = await Record.ExceptionAsync(async () => await _dataAccess.ExecuteAsync(request));
@@ -99,7 +100,7 @@ namespace TicketMate.Persistence.Tests.DataRequestTests.UserRoleTests
             Assert.NotNull(userDto);
 
             // Insert Test UserRole //
-            var request = new InsertUserRole(userDto.Id, RandomId.Random());
+            var request = new InsertUserRole(userDto.Id, int.MinValue);
 
             // assert that request throws MySqlException
             var exception = await Record.ExceptionAsync(async () => await _dataAccess.ExecuteAsync(request));
