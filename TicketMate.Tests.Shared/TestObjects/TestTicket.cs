@@ -5,7 +5,7 @@ using TicketMate.Persistence.DataRequestObjects.TicketRequests;
 using TicketMate.Persistence.DataTransferObjects;
 using TicketMate.Tests.Shared.Helpers;
 
-namespace TicketMate.Tests.Shared.Tickets
+namespace TicketMate.Tests.Shared.TestObjects
 {
     /// <summary>
     /// Shared Test Helper Used to Insert and Fetch a Ticket_DTO
