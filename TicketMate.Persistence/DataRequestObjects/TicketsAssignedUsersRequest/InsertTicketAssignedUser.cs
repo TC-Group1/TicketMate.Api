@@ -1,18 +1,29 @@
-﻿namespace TicketMate.Persistence.DataRequestObjects.TicketsAssignedUsersRequest
+﻿using TicketMate.Domain.Validation;
+
+namespace TicketMate.Persistence.DataRequestObjects.TicketsAssignedUsersRequest
 {
     public class InsertTicketAssignedUser : IDataExecute
     {
-        public InsertTicketAssignedUser(int userId, int ticketId)
+        public InsertTicketAssignedUser(Guid userGuid, Guid ticketGuid)
         {
-            UserId = userId;
-            TicketId = ticketId;
+            UserGuid = userGuid;
+            TicketGuid = ticketGuid;
         }
 
-        public int UserId { get; set; }
-        public int TicketId { get; set; }
+        public Guid UserGuid { get; set; }
+        public Guid TicketGuid { get; set; }
 
-        public string GetSql() => $"INSERT INTO {DatabaseTable.TicketsAssignedUsers} (TicketId, UserId) VALUES (@TicketId, @UserId)";
 
-        public object? GetParameters() => this;
-    }
+		public string GetSql() => 
+		$@"
+			INSERT INTO {DatabaseTable.TicketsAssignedUsers} (TicketId, UserId)
+			VALUES (
+				(SELECT Id FROM {DatabaseTable.Tickets} WHERE Guid = @TicketGuid),
+				(SELECT Id FROM {DatabaseTable.Users} WHERE Guid = @UserGuid)
+			)
+		";
+
+		public object? GetParameters() => this;
+
+	}
 }
