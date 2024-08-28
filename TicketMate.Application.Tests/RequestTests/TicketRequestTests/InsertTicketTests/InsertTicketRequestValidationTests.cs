@@ -118,7 +118,7 @@ namespace TicketMate.Application.Tests.RequestTests.TicketRequestTests.InsertTic
                 CreatedByUserGuid = Guid.NewGuid(),
             };
 
-            Assert.False(request.IsValid(out _));
+            Assert.False(request.IsValid(out _));          
         }
         #endregion
 
