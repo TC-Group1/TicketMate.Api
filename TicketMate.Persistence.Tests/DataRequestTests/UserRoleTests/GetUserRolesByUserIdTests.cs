@@ -1,7 +1,7 @@
 ﻿using TicketMate.Persistence.DataRequestObjects.RolesRequests;
 using TicketMate.Persistence.DataRequestObjects.UserRequests;
 using TicketMate.Persistence.DataRequestObjects.UserRolesRequests;
-using TicketMate.Tests.Shared.Helpers;
+using TicketMate.Tests.Shared.TestObjects;
 
 namespace TicketMate.Persistence.Tests.DataRequestTests.UserRoleTests
 {
@@ -10,7 +10,7 @@ namespace TicketMate.Persistence.Tests.DataRequestTests.UserRoleTests
         [Fact]
         public async Task GetUserRoleByUserId_Given_UserNotExisting_ShouldReturn_Null()
         {
-            Assert.Null(await _dataAccess.FetchAsync(new GetUserRolesByUserId(userId: RandomId.Random())));
+            Assert.Null(await _dataAccess.FetchAsync(new GetUserRolesByUserId(userId: int.MinValue)));
         }
 
         [Fact]

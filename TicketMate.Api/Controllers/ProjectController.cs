@@ -9,12 +9,10 @@ namespace TicketMate.Api.Controllers
 {
     public class ProjectController : BaseController
     {
-        public ProjectController(IOrchestrator orchestrator) : base(orchestrator)
-        {
-        }
+        public ProjectController(IOrchestrator orchestrator) : base(orchestrator) { }
 
         [HttpPost("Project/InsertProject")]
-        public async Task InsertProject(InsertProjectRequest request) => await _orchestrator.ExecuteRequestAsync(request);
+        public async Task InsertProject([FromBody] InsertProjectRequest request) => await _orchestrator.ExecuteRequestAsync(request);
 
         [HttpGet("Project/GetProjectByGuid")]
         public async Task GetByGuid(GetProjectByGuidRequest request) => await _orchestrator.GetRequestResponseAsync(request);
@@ -23,6 +21,6 @@ namespace TicketMate.Api.Controllers
         public async Task DeleteProjectByGuid(DeleteProjectByGuidRequest request) => await _orchestrator.ExecuteRequestAsync(request);
 
         [HttpPut("Project/UpdateProjectByGuid")]
-        public async Task UpdateProjectByGuid([FromQuery] UpdateProjectByGuidRequest request) => await _orchestrator.ExecuteRequestAsync(request);
+        public async Task UpdateProjectByGuid([FromBody] UpdateProjectByGuidRequest request) => await _orchestrator.ExecuteRequestAsync(request);
     }
 }

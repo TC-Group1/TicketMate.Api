@@ -1,5 +1,5 @@
 ﻿using TicketMate.Application.Requests.ProjectRequests.UpdateByGuid;
-using TicketMate.Tests.Shared.Helpers;
+using TicketMate.Tests.Shared.TestObjects;
 
 namespace TicketMate.Application.Tests.RequestTests.ProjectRequestTests.UpdateProjectByGuidTests
 {
