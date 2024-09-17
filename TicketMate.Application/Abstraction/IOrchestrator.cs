@@ -1,4 +1,4 @@
-﻿namespace TicketMate.Application.Abstraction
+﻿ namespace TicketMate.Application.Abstraction
 {
     public interface IOrchestrator
     {
