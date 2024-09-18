@@ -4,9 +4,9 @@ using TicketMate.Persistence.DataRequestObjects.ProjectUserRequests;
 using TicketMate.Persistence.DataRequestObjects.TicketRequests;
 using TicketMate.Persistence.DataRequestObjects.UserRequests;
 using TicketMate.Tests.Shared.Helpers;
-using TicketMate.Tests.Shared.Projects;
-using TicketMate.Tests.Shared.Tickets;
-using TicketMate.Tests.Shared.Users;
+using TicketMate.Tests.Shared.TestObjects;
+
+
 
 namespace TicketMate.Persistence.Tests.DataRequestTests.ProjectUserTests;
 
@@ -21,9 +21,9 @@ public class InsertProjectUserTests : BaseDataRequestTest
 
         var rowsAffected = await _dataAccess.ExecuteAsync(request);
 
-        await _dataAccess.ExecuteAsync(new DeleteProjectByGuid(existingProject.Guid));
+        await _dataAccess.ExecuteAsync(new DeleteProjectUser(existingProject.Guid, existingUser.Guid));
         await _dataAccess.ExecuteAsync(new DeleteUserByGuid(existingUser.Guid));
-        //TODO: Add delete for ProjectUser Guid when the DeleteProjectUSer is complete
+        await _dataAccess.ExecuteAsync(new DeleteProjectByGuid(existingProject.Guid));
 
         Assert.Equal(1, rowsAffected);
     }

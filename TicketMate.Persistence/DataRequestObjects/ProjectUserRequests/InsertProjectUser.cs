@@ -16,7 +16,10 @@ public class InsertProjectUser : IDataExecute
 
     public string GetSql() =>
         $@"
-            INSERT INTO {DatabaseTable.ProjectUsers} (ProjectGuid, UserGuid) 
-            VALUES (@ProjectGuid, @UserGuid);
+            INSERT INTO {DatabaseTable.ProjectUsers} (ProjectId, UserId) 
+            VALUES (
+                    (SELECT Id FROM {DatabaseTable.Projects} WHERE Guid = @ProjectGuid),
+                    (SELECT Id FROM {DatabaseTable.Users} WHERE Guid = @UserGuid)
+            )
          ";
 }

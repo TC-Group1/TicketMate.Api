@@ -10,23 +10,32 @@ namespace TicketMate.Api.Controllers
 {
     public class UserController : BaseController
     {
-        public UserController(IOrchestrator orchestrator) : base(orchestrator) { }
+        public UserController(IOrchestrator orchestrator) : base(orchestrator)
+        {
         }
 
-        #endregion
 
         #region Endpoints
 
         [HttpPost("User/InsertUser")]
-        public async Task InsertUser([FromBody] InsertUserRequest request) => await _orchestrator.ExecuteRequestAsync(request);
+        public async Task InsertUser([FromBody] InsertUserRequest request) =>
+            await _orchestrator.ExecuteRequestAsync(request);
 
         [HttpGet("User/GetAllUsers")]
         public async Task GetAllUsers() => await _orchestrator.GetRequestResponseAsync(new GetAllUsersRequest());
 
         [HttpGet("User/GetUserByGuid")]
-        public async Task<GetUserByGuidResponse> GetUserByGuid(GetUserByGuidRequest request) => await _orchestrator.GetRequestResponseAsync(request);
-        
-        public async Task UpdateUserByGuid([FromBody] UpdateUserByGuidRequest request) => await _orchestrator.ExecuteRequestAsync(request);
-        public async Task UpdateUserByGuid([FromQuery]UpdateUserByGuidRequest request) => await _orchestrator.ExecuteRequestAsync(request);
+        public async Task<GetUserByGuidResponse> GetUserByGuid(GetUserByGuidRequest request) =>
+            await _orchestrator.GetRequestResponseAsync(request);
+
+        [HttpPut("User/UpdateUserByGuid")]
+        public async Task UpdateUserByGuid([FromBody] UpdateUserByGuidRequest request) =>
+            await _orchestrator.ExecuteRequestAsync(request);
+
+        [HttpDelete("User/DeleteUserByGuid")]
+        public async Task DeleteUserByGuid(DeleteUserByGuidRequest request) =>
+            await _orchestrator.ExecuteRequestAsync(request);
+
+        #endregion
     }
 }

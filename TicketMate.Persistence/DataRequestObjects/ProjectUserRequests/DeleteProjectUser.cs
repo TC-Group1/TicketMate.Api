@@ -15,7 +15,11 @@ public class DeleteProjectUser : IDataExecute
     
     public string GetSql() => 
         $@"
-            DELETE FROM {DatabaseTable.ProjectUsers} WHERE ProjectGuid = @ProjectGuid AND UserGuid = @UserGuid; 
+            DELETE FROM {DatabaseTable.ProjectUsers} 
+            WHERE ProjectId = (SELECT Id FROM {DatabaseTable.Projects} WHERE Guid = @ProjectGuid)
+            AND UserId = (SELECT Id FROM {DatabaseTable.Users} WHERE Guid = @UserGuid)
            
          ";
+    
+
 }

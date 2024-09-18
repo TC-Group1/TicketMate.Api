@@ -18,13 +18,13 @@ namespace TicketMate.Persistence.Tests.DataRequestTests.TicketAssignedUserTests
 
             var ticket_DTO = await TestTicket.InsertAndFetchTicketDtoAsync(project_DTO.Guid, existingUserOne.Guid);
 
-            await _dataAccess.ExecuteAsync(new InsertTicketAssignedUser(userId: existingUserOne.Id, ticketId: ticket_DTO.Id));
-            await _dataAccess.ExecuteAsync(new InsertTicketAssignedUser(userId: existingUserTwo.Id, ticketId: ticket_DTO.Id));
+            await _dataAccess.ExecuteAsync(new InsertTicketAssignedUser(existingUserOne.Guid, ticket_DTO.Guid));
+            await _dataAccess.ExecuteAsync(new InsertTicketAssignedUser( existingUserTwo.Guid, ticket_DTO.Guid));
 
             var results = await _dataAccess.FetchListAsync(new GetAssignedUsersByTicketId(ticket_DTO.Id));
 
-            await _dataAccess.ExecuteAsync(new DeleteTicketAssignedUser(existingUserOne.Id, ticket_DTO.Id));
-            await _dataAccess.ExecuteAsync(new DeleteTicketAssignedUser(existingUserTwo.Id, ticket_DTO.Id));
+            await _dataAccess.ExecuteAsync(new DeleteTicketAssignedUser(existingUserOne.Guid, ticket_DTO.Guid));
+            await _dataAccess.ExecuteAsync(new DeleteTicketAssignedUser(existingUserTwo.Guid, ticket_DTO.Guid));
             await _dataAccess.ExecuteAsync(new DeleteTicketByGuid(ticket_DTO.Guid));
             await _dataAccess.ExecuteAsync(new DeleteProjectByGuid(project_DTO.Guid));
             await _dataAccess.ExecuteAsync(new DeleteUserByGuid(existingUserOne.Guid));
