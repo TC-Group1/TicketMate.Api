@@ -1,4 +1,5 @@
 ﻿using System.Diagnostics.CodeAnalysis;
+using TicketMate.Domain.Enums;
 using TicketMate.Persistence.Abstraction;
 using TicketMate.Persistence.DataRequestObjects.TicketRequests;
 using TicketMate.Persistence.DataTransferObjects;
@@ -28,7 +29,9 @@ namespace TicketMate.Tests.Shared.TestObjects
                        projectGuid,
                        TestString.Random(),
                        TestString.Random(),
-                       userGuid);
+                       userGuid, 
+                       null,
+                       Statuses.New);
 
             await _dataAccess.ExecuteAsync(insertTicketRequest);
         }

@@ -1,4 +1,5 @@
 ﻿using TicketMate.Domain.Constants;
+using TicketMate.Domain.Enums;
 using TicketMate.Domain.Validation.GuidValidation;
 using TicketMate.Domain.Validation.StringValidation;
 
@@ -13,7 +14,7 @@ namespace TicketMate.Application.Requests.TicketRequests.Insert
         public string Title { get; set; } = null!;
         public string Description { get; set; } = string.Empty;
         public int? PriorityId { get; set; }
-        public int StatusId { get; set; } = 1;
+        public Statuses StatusId { get; set; }
         public Guid CreatedByUserGuid { get; set; }
 
         public bool IsValid(out Validator validator)
